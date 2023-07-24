@@ -1,7 +1,5 @@
 # Projeto_Web1_Django
 
-Claro! Abaixo está uma descrição para o README do GitHub do sistema:
-
 # Sistema de Locação de Carros
 
 Este é um sistema de locação de carros desenvolvido utilizando o framework Django. O sistema permite que clientes cadastrem-se e façam reservas de carros disponíveis na locadora. Além disso, o sistema conta com uma interface administrativa que permite que funcionários da locadora gerenciem as reservas, carros e clientes.
