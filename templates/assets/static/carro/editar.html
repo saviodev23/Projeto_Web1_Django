@@ -1,0 +1,72 @@
+{% extends 'assets/static/base.html' %}
+{% block content %}
+<div class="container py-5">
+  <h2>Editar Automóvel</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Salvar</button>
+    <a href="{% url 'detalhes_automovel' ID  %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+{% endblock %}
+
+{#{% extends 'assets/static/base.html' %}#}
+{##}
+{#{% block content %}#}
+{#<div class="container py-5">#}
+{#  <div class="card p-5">#}
+{#    <h2 class="mb-4">Editar Automóvel</h2>#}
+{##}
+{#    <form method="post" class="mx-auto">#}
+{#      {% csrf_token %}#}
+{#      <div class="form-group">#}
+{#        <label for="{{ form.modelo.marca.id_for_label }}">Marca:</label>#}
+{#        {{ form.modelo.marca }}#}
+{#      </div>#}
+{#      <div class="form-group">#}
+{#        <label for="{{ form.modelo.id_for_label }}">Modelo:</label>#}
+{#        {{ form.modelo }}#}
+{#      </div>#}
+{#      <div class="form-group">#}
+{#        <label for="{{ form.placa.id_for_label }}">Placa:</label>#}
+{#        {{ form.placa }}#}
+{#      </div>#}
+{#      <div class="form-group">#}
+{#        <label for="{{ form.cor.id_for_label }}">Cor:</label>#}
+{#        {{ form.cor }}#}
+{#      </div>#}
+{#      <div class="form-group">#}
+{#        <label for="{{ form.nr_portas.id_for_label }}">Número de Portas:</label>#}
+{#        {{ form.nr_portas }}#}
+{#      </div>#}
+{#      <div class="form-group">#}
+{#        <label for="{{ form.tipo_combustivel.id_for_label }}">Tipo de Combustível:</label>#}
+{#        {{ form.tipo_combustivel }}#}
+{#      </div>#}
+{#      <div class="form-group">#}
+{#        <label for="{{ form.quilometragem.id_for_label }}">Quilometragem:</label>#}
+{#        {{ form.quilometragem }}#}
+{#      </div>#}
+{#      <div class="form-group">#}
+{#        <label for="{{ form.renavam.id_for_label }}">Renavam:</label>#}
+{#        {{ form.renavam }}#}
+{#      </div>#}
+{#      <div class="form-group">#}
+{#        <label for="{{ form.chassi.id_for_label }}">Chassi:</label>#}
+{#        {{ form.chassi }}#}
+{#      </div>#}
+{#      <div class="form-group">#}
+{#        <label for="{{ form.valor_locacao.id_for_label }}">Valor de Locação:</label>#}
+{#        {{ form.valor_locacao }}#}
+{#      </div>#}
+{#      <button type="submit" class="btn btn-primary">Salvar</button>#}
+{#      <a href="{% url 'home' %}" class="btn btn-secondary">Cancelar</a>#}
+{#    </form>#}
+{#    <a class="btn btn-danger mt-3" href="{% url 'home' %}">Voltar</a>#}
+{#  </div>#}
+{#</div>#}
+{#{% endblock %}#}
+
+

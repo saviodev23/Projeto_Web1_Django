@@ -1,0 +1,102 @@
+{% extends 'assets/static/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- Banner -->
+<div class="jumbotron text-center">
+  <h1 class="display-4">Alugue um Carro Agora!</h1>
+  <p class="lead">Descubra a melhor seleção de carros para atender às suas necessidades de locação.</p>
+  <a class="btn btn-primary btn-lg" href="#carros-disponiveis" role="button">Ver Carros Disponíveis</a>
+</div>
+
+<!-- Seção de informações -->
+<section class="container py-5">
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Carros de Qualidade</h2>
+      <p>Oferecemos uma frota diversificada de veículos de qualidade para você escolher. Desde carros compactos até SUVs luxuosos, temos tudo o que você precisa para tornar sua viagem especial.</p>
+    </div>
+    <div class="col-md-4">
+      <h2>Reservas Fáceis</h2>
+      <p>Nosso processo de reserva é simples e conveniente. Basta selecionar o carro de sua escolha, fornecer algumas informações básicas e pronto! Você estará pronto para pegar seu carro em pouco tempo.</p>
+    </div>
+    <div class="col-md-4">
+      <h2>Atendimento ao Cliente</h2>
+      <p>Nossa equipe dedicada está pronta para ajudá-lo em todas as etapas do processo de locação. Se você tiver alguma dúvida ou precisar de assistência, não hesite em entrar em contato conosco.</p>
+    </div>
+  </div>
+</section>
+{% if carros %}
+<!-- Seção de destaques dos carros disponíveis -->
+<section class="bg-light py-5">
+
+  <div class="container text-center">
+    <h2 id="carros-disponiveis">Carros Disponíveis</h2>
+	    <div class="row mt-4">
+	    {% for carro in carros %}
+		    {% if carro.disponivel == True %}
+		      <div class="col-md-4">
+		        <div class="card mb-4 box-shadow">
+			        {% if carro.imagem == "" or carro.imagem == null %}
+			            <img class="card-img-top" src="{% static 'imagens/error.png' %}" alt="Carro 1">
+			        {% else %}
+		                <img class="card-img-top" src="{{ carro.imagem.url }}" alt="Carro 1">
+			        {% endif %}
+		          <div class="card-body">
+		            <h5 class="card-title">{{ carro.modelo.marca.descricao }} - {{ carro.modelo.descricao }} <strong class="valor-locacao">R$ {{ carro.valor_locacao }}/Dia</strong></h5>
+		            <p class="card-text">{{ carro.descricao }}</p>
+		            <a href="{% url 'detalhes_automovel' carro.id %}" class="btn btn-primary">Detalhes</a>
+		          </div>
+		        </div>
+		      </div>
+		    {% endif %}
+	    {% endfor %}
+	    </div>
+  </div>
+</section>
+	<br>
+	<br>
+<section class="bg-light py-5">
+  <div class="container text-center">
+    <h2>Carros alugados no momento</h2>
+	    <div class="row mt-4">
+	    {% for carro in carros %}
+		    {% if carro.disponivel == False %}
+		      <div class="col-md-4">
+		        <div class="card mb-4 box-shadow">
+			        {% if carro.imagem == "" or carro.imagem == null %}
+			            <img class="card-img-top" src="{% static 'imagens/error.png' %}" alt="Carro 1">
+			        {% else %}
+		                <img class="card-img-top" src="{{ carro.imagem.url }}" alt="Carro 1">
+			        {% endif %}
+		          <div class="card-body">
+		            <h5 class="card-title">{{ carro.modelo.marca.descricao }} - {{ carro.modelo.descricao }} <strong class="valor-locacao">R$ {{ carro.valor_locacao }}/Dia</strong></h5>
+		            <p class="card-text">{{ carro.descricao }}</p>
+		            <a href="{% url 'detalhes_automovel' carro.id %}" class="btn btn-primary">Detalhes</a>
+		          </div>
+		        </div>
+		      </div>
+		    {% endif %}
+	    {% endfor %}
+	    </div>
+  </div>
+</section>
+{% endif %}
+
+<style>
+	.valor-locacao {
+	  background-color: #007bff;
+	  padding: 3px 3px;
+	  border-radius: 5px;
+	  font-size: 16px;
+	  color: white;
+	}
+  @media (max-width: 576px) {
+      .valor-locacao {
+          font-size: 3.5vw; /* Ajuste o valor para telas pequenas */
+      }
+  }
+</style>
+
+{% endblock %}

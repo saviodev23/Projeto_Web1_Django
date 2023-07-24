@@ -1,0 +1,29 @@
+{% extends 'assets/static/base.html' %}
+{% block content%}
+
+<title>404 Error - SB Admin</title>
+
+        <div id="layoutError">
+            <div id="layoutError_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-6">
+                                <div class="text-center mt-4">
+                                    <h1 class="display-1">401</h1>
+                                    <p class="lead">Não autorizado.</p>
+                                    <p>O acesso a este recurso foi negado.</p>
+                                    <a href="{% url 'logi' %}">
+                                        <i class="fas fa-arrow-left me-1"></i>
+                                        Você não entrou como Administrador, faça o login
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+        </div>
+
+{% endblock %}

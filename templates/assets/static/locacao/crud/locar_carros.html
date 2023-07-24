@@ -1,0 +1,68 @@
+{% extends 'assets/static/base.html' %}
+
+{% block content %}
+{% for message in messages %}
+    {% if message.tags %}
+        <li class="message mt-4">{{ message }}</li>
+    {% endif %}
+{% endfor %}
+
+<div class="container py-5">
+  <h2 class="text-center">Pedidos de Reserva dos Clientes</h2>
+  {% if reservas %}
+	<ul id="intro" class="list-group mt-4">
+    {% for reserva in reservas %}
+      <li class="list-group-item">
+        <a id="edit" href="{% url 'editar_reserva' reserva.id %}">{{ reserva.automovel.modelo.marca.descricao }} - {{ reserva.automovel.modelo.descricao }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+	<h5 id="intro" class="mt-5">Sem solicitações de Reservas no momento.</h5>
+{% endif %}
+<a class="btn btn-secondary" href="{% url 'home' %}">Voltar</a>
+</div>
+	<style>
+	.list-group-item{
+		background: #007bff;
+	}
+		#edit{
+			color: white;
+			font-size: 20px;
+			text-decoration: none;
+		}
+		#edit:hover{
+			transition: 0.2s;
+			color: black;
+		}
+
+		#intro {
+	        height: 100vh;
+		}
+
+	      /* Height for devices larger than 576px */
+		@media (min-width: 992px) {
+	        #intro {
+	          margin-top: -58.59px;
+	        }
+		}
+
+	.message {
+	    background-color: #007bff;
+		padding: 10px;
+		border-radius: 5px;
+	    color: #fff;
+		font-size: 16px;
+		text-align: center;
+	}
+
+	  @media (max-width: 576px) {
+	      .message {
+		      align-items: center;
+	          padding: 10px;
+		      text-align: center;
+	      }
+      }
+	</style>
+{% endblock %}
+

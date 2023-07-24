@@ -1,0 +1,15 @@
+{% extends 'assets/static/base.html' %}
+{% block content %}
+
+<div class="container py-5 mt-4">
+  <div class="card p-5">
+    <h3 class="mb-4">Remover Carro: {{carro.modelo.marca.descricao}} {{ carro.modelo.descricao }}</h3>
+    <h3 class="mb-4">Tem certeza que deseja deletar este Carro?</h3>
+    <div class="d-flex justify-content-between">
+      <a class="btn btn-danger mr-2" href="{% url 'confirmar_remocao_carro' carro.id %}">Sim</a>
+      <a class="btn btn-primary" href="{% url 'detalhes_automovel' carro.id %}">Não</a>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

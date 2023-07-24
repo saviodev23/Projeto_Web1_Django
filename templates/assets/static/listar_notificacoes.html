@@ -1,0 +1,32 @@
+{% extends 'assets/static/base.html' %}
+{% block content %}
+<div class="container py-5 d-flex justify-content-center align-items-center">
+  <div class="col-md-8">
+    <h2 class="text-center">Notificações</h2>
+    <ul class="list-group mt-4" id="intro">
+      {% for notification in notifications %}
+        <li class="list-group-item text-center">
+          {% if notification.actor %}
+            {{ notification.actor }} {% if notification.verb %}{{ notification.verb }}{% endif %} {% if notification.description %}- {{ notification.description }}{% endif %}
+          {% else %}
+            {{ notification.description }}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+<style>
+  #intro {
+    height: 100vh;
+  }
+
+  /* Height for devices larger than 576px */
+  @media (min-width: 992px) {
+    #intro {
+      margin-top: -58.59px;
+    }
+  }
+</style>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'assets/static/base.html' %}
+{% block content %}
+
+<div id="intro" class="container py-5 mt-4">
+  <div class="card p-5">
+    <h3 class="mb-4">Remover Marca: {{marca.descricao}}</h3>
+    <h3 class="mb-4">Tem certeza que deseja deletar esta Marca?</h3>
+    <div class="d-flex justify-content-between">
+      <a class="btn btn-danger mr-2" href="{% url 'confirmar_remocao_marca' marca.id %}">Sim</a>
+      <a class="btn btn-primary" href="{% url 'add_marca'%}">Não</a>
+    </div>
+  </div>
+</div>
+
+<style>
+	#intro {
+        height: 100vh;
+	}
+
+      /* Height for devices larger than 576px */
+	@media (min-width: 992px) {
+        #intro {
+          margin-top: -58.59px;
+        }
+	}
+</style>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'assets/static/base.html' %}
+{% block content %}
+<div class="container py-5">
+  <h2>Editar Modelo</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Salvar</button>
+{#    <a href="{% url 'detalhes_automovel'  %}" class="btn btn-secondary">Cancelar</a>#}
+  </form>
+<a class="btn btn-outline-danger" href="{% url 'add_modelo' %}">Voltar</a>
+</div>
+{% endblock %}

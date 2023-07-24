@@ -1,0 +1,79 @@
+{% extends 'assets/static/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container py-5 mt-4">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h2 class="text-center">Minhas Reservas</h2>
+
+    {% if messages %}
+	    <ul class="messages">
+	        {% for message in messages %}
+	            {% if message.tags %}
+		            <li class="message">{{ message }}</li>
+	            {% endif %}
+	        {% endfor %}
+	    </ul>
+	{% endif %}
+
+
+      {% if reservas %}
+        <ul class="list-group mt-5">
+          {% for reserva in reservas %}
+            <li class="list-group-item">
+              <h4 class="font-weight-bold">{{ reserva.automovel.modelo.marca.descricao }} - {{ reserva.automovel.modelo.descricao }}</h4>
+            {% if reserva.automovel.imagem == "" or reserva.automovel.imagem == null %}
+				<img class="card-img-top" src="{% static 'imagens/error.png' %}" alt="Carro 1">
+	        {% else %}
+                <img class="card-img-top" src="{{ reserva.automovel.imagem.url }}" alt="imagem do automovel reservado">
+	        {% endif %}
+              <p class="mt-4"><strong>Data de Locação:</strong> {{ reserva.data_locacao }}</p>
+              <p><strong>Hora de Locação:</strong> {{ reserva.hora_locacao }}</p>
+              <p><strong>Data de Devolução:</strong> {{ reserva.data_devolucao }}</p>
+              <p><strong>Hora de Devolução:</strong> {{ reserva.hora_devolucao}}</p>
+              <p><strong>Quilometragem:</strong> {{ reserva.quilometragem }}</p>
+              <p><strong>Valor de Locação:</strong> R$ {{ reserva.valor_locacao }}</p>
+              <p><strong>Status de Locação:</strong> {{ reserva.status}}</p>
+	          <a class="btn btn-primary" href="{% url 'cancelar_reserva' reserva.automovel.id %}">Cancelar reserva</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <h5 id="intro" class="mt-4 text-center"> Você ainda não fez nenhuma reserva.</h5>
+      {% endif %}
+    </div>
+  </div>
+<a class="btn btn-secondary" href="{% url 'home' %}">Voltar</a>
+</div>
+	<style>
+
+	.message {
+	    background-color: #007bff;
+		padding: 10px;
+		border-radius: 5px;
+	    color: #fff;
+		font-size: 16px;
+		text-align: center;
+	}
+
+	  @media (max-width: 576px) {
+      .message {
+	      align-items: center;
+          padding: 10px;
+	      text-align: center;
+      }
+  }
+	#intro {
+		height: 100vh;
+	}
+
+	      /* Height for devices larger than 576px */
+	@media (min-width: 992px) {
+		#intro {
+			margin-top: -58.59px;
+		}
+	}
+
+	</style>
+
+{% endblock %}

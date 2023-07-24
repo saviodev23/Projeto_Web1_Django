@@ -1,0 +1,17 @@
+{% extends 'assets/static/base.html' %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="card p-5">
+    <h2 class="mb-4">Realizar Reserva do Carro</h2>
+
+	<form method="post" class="mx-auto">
+	  {% csrf_token %}
+
+		{{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Realizar Reserva</button>
+      <a href="{% url 'home' %}" class="btn btn-secondary">Cancelar</a>
+	</form>
+</div>
+
+{% endblock %}
