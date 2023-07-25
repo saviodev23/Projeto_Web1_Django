@@ -1,5 +1,6 @@
 {% extends 'assets/static/base.html' %}
 {% block content %}
+{% load bootstrap5 %}
 <div class="row justify-content-center">
 
     <div class="col-xl-10 col-lg-12 col-md-9">
@@ -16,7 +17,9 @@
                             </div>
                             <form enctype="multipart/form-data" class="user" method="POST">
                                 {% csrf_token%}
-                                {{form.as_p}}
+{#                                {{form.as_p}}#}
+	                            {% bootstrap_form form %}
+
                                 <button class="btn btn-primary btn-user btn-block" type="submit">Cadastrar</button>
                             </form>
 

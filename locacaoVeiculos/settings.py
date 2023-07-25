@@ -32,7 +32,8 @@ INSTALLED_APPS = [
     'automovel.apps.AutomovelConfig',
     'locacao.apps.LocacaoConfig',
     'crispy_forms',
-    'notifications'
+    'notifications',
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [

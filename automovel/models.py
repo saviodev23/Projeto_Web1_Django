@@ -12,18 +12,30 @@ class Modelo(models.Model):
         return self.descricao
 
 class Automovel(models.Model):
+    COR_CHOICES = (
+        ('Branco', 'Branco'),
+        ('Preto', 'Preto'),
+        ('Prata', 'Prata'),
+        ('Vermelho', 'Vermelho'),
+        ('Azul', 'Azul'),
+        ('Verde', 'Verde'),
+        ('Amarelo', 'Amarelo'),
+        ('Laranja', 'Laranja'),
+        ('Rosa', 'Rosa'),
+        ('Roxo', 'Roxo'),
+    )
     TIPO_COMBUSTIVEL_CHOICES = (
-        ('gasolina', 'Gasolina'),
-        ('etanol', 'Etanol'),
-        ('diesel', 'Diesel'),
-        ('flex', 'Flex'),
-        ('eletrico', 'Elétrico'),
+        ('Gasolina', 'Gasolina'),
+        ('Etanol', 'Etanol'),
+        ('Diesel', 'Diesel'),
+        ('Flex', 'Flex'),
+        ('Eletrico', 'Elétrico'),
     )
 
-    placa = models.CharField(max_length=10, blank=True, null=True)
-    cor = models.CharField(max_length=20, blank=True, null=True)
-    nr_portas = models.IntegerField(verbose_name='Número de portas', blank=True, null=True)
-    tipo_combustivel = models.CharField(max_length=10, choices=TIPO_COMBUSTIVEL_CHOICES, default='flex')
+    placa = models.CharField(max_length=10)
+    cor = models.CharField(max_length=20, choices=COR_CHOICES, default='Branco')
+    nr_portas = models.IntegerField(verbose_name='Número de portas', default=4)
+    tipo_combustivel = models.CharField(max_length=10, choices=TIPO_COMBUSTIVEL_CHOICES, default='Flex')
     quilometragem = models.DecimalField(blank=True, null=True, max_digits=8, decimal_places=2)
     renavam = models.IntegerField(blank=True, null=True)
     chassi = models.CharField(max_length=20, blank=True, null=True)

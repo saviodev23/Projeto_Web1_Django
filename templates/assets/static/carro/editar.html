@@ -1,11 +1,12 @@
 {% extends 'assets/static/base.html' %}
 {% block content %}
+{% load bootstrap5 %}
 <div class="container py-5">
   <h2>Editar Automóvel</h2>
 
   <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+	  {% bootstrap_form form %}
     <button type="submit" class="btn btn-primary">Salvar</button>
     <a href="{% url 'detalhes_automovel' ID  %}" class="btn btn-secondary">Cancelar</a>
   </form>
