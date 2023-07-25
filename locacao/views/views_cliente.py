@@ -1,8 +1,6 @@
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import redirect, render, get_object_or_404
-from notifications.signals import notify
-
 from automovel.models import Automovel
 from locacao.forms import FormAddLocacao
 from locacao.models import Locacao
@@ -22,7 +20,7 @@ def fazer_reserva(request, carro_id):
     if request.user.is_authenticated:
         user_id = request.user.id
         automovel = Automovel.objects.get(pk=carro_id)
-        # form = FormAddLocacao()
+
         if request.method == 'POST':
             form = FormAddLocacao(request.POST)
             if form.is_valid():
@@ -35,7 +33,7 @@ def fazer_reserva(request, carro_id):
                 if automovel.disponivel == False:
                     return HttpResponse('Carro não disponivel')
                 else:
-
+                    #aqui eu faço a contagem de dias atraves da data de locacao e devolucao
                     diferenca_dias = (data_devolucao - data_locacao)
                     quantidade_dias = diferenca_dias.days
                     print(quantidade_dias)
@@ -54,8 +52,7 @@ def fazer_reserva(request, carro_id):
 
                     )
                     reserva.save()
-                    #deixando o automovel indisponivel para não possivilitar algum clienta fazer a reserva dele
-
+                    #deixando o automovel indisponivel para não possibilitar algum clienta fazer a reserva dele
 
                     return redirect('listar_reservas')
 
@@ -101,9 +98,3 @@ def cancelar_reserva(request, carro_id):
 
     else:
         return HttpResponse('faça login')
-
-
-
-
-
-
