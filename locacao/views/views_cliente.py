@@ -10,7 +10,8 @@ def listar_reservas(request):
     if request.user.is_authenticated:
         user_id = request.user.id
         # Recupera as reservas feitas pelo cliente logado
-        reservas = Locacao.objects.filter(cliente=user_id)
+        reservas = Locacao.objects.filter(cliente=user_id).order_by('data_locacao')
+
         context = {
             'reservas': reservas
         }
@@ -39,6 +40,9 @@ def fazer_reserva(request, carro_id):
                     print(quantidade_dias)
                     valor_soma = (automovel.valor_locacao * quantidade_dias)
 
+                    # calculo da qtd de KM/dia
+                    limite_km = (quantidade_dias * 100)
+
                     reserva = Locacao.objects.create(
                         automovel=automovel,
                         cliente_id=user_id,
@@ -47,7 +51,8 @@ def fazer_reserva(request, carro_id):
                         hora_locacao=hora_locacao,
                         hora_devolucao=hora_devolucao,
                         valor_locacao=valor_soma,
-                        quilometragem=automovel.quilometragem,
+                        limite_km_dia=limite_km,
+                        quilometragem=0,
                         devolvido=False,
 
                     )

@@ -1,5 +1,5 @@
 {% extends 'assets/static/base.html' %}
-
+{% load bootstrap5 %}
 {% block content %}
 <div class="container py-5">
 
@@ -8,7 +8,8 @@
 	<h5><strong>Status Atual:</strong> {{ reserva.status }}</h5>
   <form class="mt-4" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+{#    {{ form.as_p }}#}
+	{% bootstrap_form form %}
     <button type="submit" class="btn btn-primary">Salvar Alterações</button>
     <a href="{% url 'listar_reservas_admin' %}" class="btn btn-secondary">Cancelar</a>
 	<a href="/remover/reserva/{{ reserva.id }}" class="btn btn-outline-danger">Deletar Reserva</a>

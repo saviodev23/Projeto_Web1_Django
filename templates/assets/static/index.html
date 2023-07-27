@@ -27,13 +27,45 @@
     </div>
   </div>
 </section>
+
+<!-- Seção de Requisitos para Aluguel -->
+<section class="bg-light py-5">
+  <div class="container text-center">
+    <h2>Requisitos para Aluguel</h2>
+    <div class="row mt-4">
+      <div class="col-md-6 offset-md-3">
+        <ul class="list-group">
+          <li class="list-group-item">Idade e tempo de carteira: Para alugar um carro, é necessário ter no mínimo 21 anos e possuir carteira de motorista válida por pelo menos 2 anos.</li>
+          <li class="list-group-item">Documentos originais: É obrigatório apresentar documentos originais, como RG, CPF e comprovante de residência, no momento da locação.</li>
+          <li class="list-group-item">Cartão de crédito: Um cartão de crédito válido é exigido para efetuar o pagamento do aluguel e como garantia para a locação.</li>
+          <li class="list-group-item">CPF sem restrição: O cliente deve ter o CPF sem restrição nos órgãos de proteção ao crédito.</li>
+          <li class="list-group-item">Clientes Estrangeiros: Clientes estrangeiros devem apresentar passaporte válido, visto de turista e carteira de motorista internacional.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Adicione o campo de busca no topo da página -->
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <form class="d-flex my-4" method="GET">
+        <input class="form-control form-control-lg mr-sm-2 flex-grow-1" type="search" name="search" placeholder="Modelo ou marca do carro" aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
 {% if carros %}
 <!-- Seção de destaques dos carros disponíveis -->
 <section class="bg-light py-5">
 
   <div class="container text-center">
     <h2 id="carros-disponiveis">Carros Disponíveis</h2>
-	    <div class="row mt-4">
+
+	<div class="row mt-4">
 	    {% for carro in carros %}
 		    {% if carro.disponivel == True %}
 		      <div class="col-md-4">
@@ -97,6 +129,11 @@
           font-size: 3.5vw; /* Ajuste o valor para telas pequenas */
       }
   }
+
+	img{
+		max-width: 300px;
+		height: 200px;
+	}
 </style>
 
 {% endblock %}

@@ -19,7 +19,11 @@
         <input type="date" name="{{ form.data_devolucao.name }}" id="{{ form.data_devolucao.id_for_label }}" class="form-control">
         <input type="time" name="{{ form.hora_devolucao.name }}" id="{{ form.hora_devolucao.id_for_label }}" class="form-control mt-2">
       </div>
-
+		<div>
+			<p>O limite padrão de KM diários é de 100KM/dia.</p>
+		</div>
+	    <br>
+	    <br>
       <button type="submit" class="btn btn-primary">Realizar Reserva</button>
       <a href="{% url 'home' %}" class="btn btn-secondary">Cancelar</a>
     </form>

@@ -3,25 +3,35 @@
 {% block content %}
 {% for message in messages %}
     {% if message.tags %}
-        <li class="message mt-4">{{ message }}</li>
+        <p class="message mt-4">{{ message }}</p>
     {% endif %}
 {% endfor %}
 
 <div class="container py-5">
   <h2 class="text-center">Pedidos de Reserva dos Clientes</h2>
+
+  <!-- Formulário de busca -->
+  <form method="get" class="form-inline justify-content-center mt-4">
+    <div class="form-group">
+      <input type="text" name="search" class="form-control" placeholder="Cliente ou Chassi">
+    </div>
+    <button type="submit" class="btn btn-primary ml-2">Buscar</button>
+  </form>
+
   {% if reservas %}
-	<ul id="intro" class="list-group mt-4">
+  <ul id="intro" class="list-group mt-5">
     {% for reserva in reservas %}
       <li class="list-group-item">
-        <a id="edit" href="{% url 'editar_reserva' reserva.id %}">{{ reserva.automovel.modelo.marca.descricao }} - {{ reserva.automovel.modelo.descricao }}</a>
+        <a id="edit" href="{% url 'editar_reserva' reserva.id %}">{{ reserva.cliente.nome }} Carro: {{ reserva.automovel.modelo.marca.descricao }} - {{ reserva.automovel.modelo.descricao }}/{{ reserva.automovel.ano_fabricacao }} Chassi: {{ reserva.automovel.chassi }}</a>
       </li>
     {% endfor %}
   </ul>
-{% else %}
-	<h5 id="intro" class="mt-5">Sem solicitações de Reservas no momento.</h5>
-{% endif %}
-<a class="btn btn-secondary" href="{% url 'home' %}">Voltar</a>
+  {% else %}
+  <h5 id="intro" class="mt-5">Sem solicitações de Reservas no momento.</h5>
+  {% endif %}
+  <a class="btn btn-secondary" href="{% url 'home' %}">Voltar</a>
 </div>
+
 	<style>
 	.list-group-item{
 		background: #32373b;
