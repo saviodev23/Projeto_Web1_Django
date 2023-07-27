@@ -1,8 +1,11 @@
 from django.db.models import Q
 from django.shortcuts import render
 from automovel.models import Automovel
+from locacaoVeiculos.utils import create_groups
+
 
 def home(request):
+    create_groups()
     carros = Automovel.objects.all()
 
     search_query = request.GET.get('search')

@@ -1,14 +1,11 @@
 from django.contrib.auth import login
-from django.contrib.messages.context_processors import messages
+from django.contrib.auth.models import Group
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
-
 from accounts.backend import CustomBackend
 from accounts.forms import CustomUserCreationForm, CustomLoginForm
 from accounts.models import User
-from notifications.models import Notification
-
 
 def register(request):
     form = CustomUserCreationForm()
@@ -34,6 +31,7 @@ def register(request):
                     telefone=telefone,
                     email=email,
                 )
+                user.groups.add(Group.objects.get(name="cliente"))
                 user.set_password(senha)
                 user.save()
 
@@ -69,9 +67,3 @@ def login_user(request):
         form = CustomLoginForm()
 
     return render(request, 'registration/login.html', {'form': form})
-
-
-def listar_notificacoes(request):
-    user = request.user.id
-    notifications = Notification.objects.filter(recipient=user).order_by('-timestamp')
-    return render(request, 'assets/static/listar_notificacoes.html', {'notifications': notifications})

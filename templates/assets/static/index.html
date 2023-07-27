@@ -33,14 +33,44 @@
   <div class="container text-center">
     <h2>Requisitos para Aluguel</h2>
     <div class="row mt-4">
-      <div class="col-md-6 offset-md-3">
-        <ul class="list-group">
-          <li class="list-group-item">Idade e tempo de carteira: Para alugar um carro, é necessário ter no mínimo 21 anos e possuir carteira de motorista válida por pelo menos 2 anos.</li>
-          <li class="list-group-item">Documentos originais: É obrigatório apresentar documentos originais, como RG, CPF e comprovante de residência, no momento da locação.</li>
-          <li class="list-group-item">Cartão de crédito: Um cartão de crédito válido é exigido para efetuar o pagamento do aluguel e como garantia para a locação.</li>
-          <li class="list-group-item">CPF sem restrição: O cliente deve ter o CPF sem restrição nos órgãos de proteção ao crédito.</li>
-          <li class="list-group-item">Clientes Estrangeiros: Clientes estrangeiros devem apresentar passaporte válido, visto de turista e carteira de motorista internacional.</li>
-        </ul>
+      <div class="col-md-10 offset-md-1">
+        <div class="card-deck d-flex flex-wrap justify-content-center">
+          <div class="card">
+            <i class="fa-solid fa-user icons"></i>
+            <div class="card-body">
+              <h5 class="card-title">Idade e Tempo de Carteira</h5>
+              <p class="card-text">Para alugar um carro, é necessário ter no mínimo 21 anos e possuir carteira de motorista válida por pelo menos 2 anos.</p>
+            </div>
+          </div>
+          <div class="card">
+           <i class="fa-solid fa-address-card icons"></i>
+            <div class="card-body">
+              <h5 class="card-title">Documentos Originais</h5>
+              <p class="card-text">É obrigatório apresentar documentos originais, como RG, CPF e comprovante de residência, no momento da locação.</p>
+            </div>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-credit-card icons"></i>
+            <div class="card-body">
+              <h5 class="card-title">Cartão de Crédito</h5>
+              <p class="card-text">Um cartão de crédito válido é exigido para efetuar o pagamento do aluguel e como garantia para a locação.</p>
+            </div>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-id-card-clip icons"></i>
+            <div class="card-body">
+              <h5 class="card-title">CPF sem Restrição</h5>
+              <p class="card-text">O cliente deve ter o CPF sem restrição nos órgãos de proteção ao crédito.</p>
+            </div>
+          </div>
+          <div class="card">
+            <i class="fa-solid fa-earth-americas icons"></i>
+            <div class="card-body">
+              <h5 class="card-title">Clientes Estrangeiros</h5>
+              <p class="card-text">Clientes estrangeiros devem apresentar passaporte válido, visto de turista e carteira de motorista internacional.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -117,6 +147,15 @@
 {% endif %}
 
 <style>
+
+	.card{
+		justify-content: center;
+		align-items: center;
+	}
+	img{
+		max-width: 300px;
+		height: 200px;
+	}
 	.valor-locacao {
 	  background-color: #007bff;
 	  padding: 3px 3px;
@@ -130,10 +169,14 @@
       }
   }
 
-	img{
-		max-width: 300px;
-		height: 200px;
+	.icons{
+		margin-top: 10px;
+		max-width: 100px;
+		height: 50px;
+		color: #007bff;
 	}
+
+
 </style>
 
 {% endblock %}

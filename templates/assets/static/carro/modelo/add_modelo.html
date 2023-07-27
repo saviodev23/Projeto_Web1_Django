@@ -1,64 +1,65 @@
 {% extends 'assets/static/base.html' %}
-{% block content %}
 {% load bootstrap5 %}
-<div class="row justify-content-center">
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
 
-    <div class="col-xl-10 col-lg-12 col-md-9">
-
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <!-- Nested Row within Card Body -->
-                <div class="row">
-                    <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                    <div class="col-lg-6">
-                        <div class="p-5">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Cadastrar Novo Modelo</h1>
-                            </div>
-                            <form enctype="multipart/form-data" class="user" method="POST">
-                                {% csrf_token%}
-{#                                {{form.as_p}}#}
-	                            {% bootstrap_form form %}
-
-                                <button class="btn btn-primary btn-user btn-block" type="submit">Cadastrar</button>
-                            </form>
-
-                            <hr>
-
+        <div class="col-xl-8 col-lg-10 col-md-12">
+            <div class="card o-hidden border-0 shadow-lg">
+                <div class="card-body p-0">
+                    <div class="row" style="justify-content: center">
+                        <div class="col-lg-6 d-none d-lg-block bg-login-image">
+	                        <div class="col-lg-6"></div>
+	                            <div class="p-5">
+	                                <div class="text-center">
+	                                    <h1 class="h4 text-gray-900 mb-4">Cadastrar Novo Modelo</h1>
+	                                </div>
+	                                <form enctype="multipart/form-data" class="user" method="POST">
+	                                    {% csrf_token %}
+	                                    {% bootstrap_form form %}
+	                                    <button class="btn btn-primary btn-user btn-block" type="submit">Cadastrar</button>
+	                                </form>
+	                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="card o-hidden border-0 shadow-lg my-5">
-            <div class="card-body p-0">
-                <div class="table-responsive">
-                <h3 class="">Lista de Modelos</h3>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Descrição</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for modelo in modelos %}
-                            <tr>
-                                <td>{{ modelo.id }}</td>
-                                <td>{{ modelo.descricao }}</td>
-                                <td>
-                                    <a href="{% url 'editar_modelo' modelo.id %}" class="btn btn-primary btn-sm">Editar</a>
-                                    <a href="/remove/modelo/{{ modelo.id }}" class="btn btn-danger btn-sm">Remover</a>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+        <div class="col-xl-8 col-lg-10 col-md-12 mt-5">
+            <div class="card o-hidden border-0 shadow-lg">
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <h3 class="p-4">Lista de Modelos</h3>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Descrição</th>
+                                    <th scope="col">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for modelo in modelos %}
+                                <tr>
+                                    <td>{{ modelo.id }}</td>
+                                    <td>{{ modelo.descricao }}</td>
+                                    <td>
+                                        <a href="{% url 'editar_modelo' modelo.id %}" class="btn btn-success btn-sm">Editar</a>
+                                        <a href="/remove/modelo/{{ modelo.id }}" class="btn btn-danger btn-sm">Remover</a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-	<a class="btn btn-outline-danger" href="{% url 'home' %}">Voltar</a>
+
+        <div class="col-12 mt-4 text-center">
+            <a class="btn btn-secondary" href="{% url 'home' %}">Voltar</a>
+        </div>
 
     </div>
 </div>

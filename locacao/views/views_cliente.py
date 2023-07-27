@@ -8,9 +8,9 @@ from locacao.models import Locacao
 
 def listar_reservas(request):
     if request.user.is_authenticated:
-        user_id = request.user.id
         # Recupera as reservas feitas pelo cliente logado
-        reservas = Locacao.objects.filter(cliente=user_id).order_by('data_locacao')
+        user_id = request.user.id
+        reservas = Locacao.objects.filter(cliente=user_id).order_by('-data_locacao')
 
         context = {
             'reservas': reservas

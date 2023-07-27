@@ -1,5 +1,3 @@
-<!-- Barra de navegação -->
-<!-- Barra de navegação -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="{% url 'home' %}">RentCars</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +28,6 @@
 	        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
 	        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 	            <li><a class="text-danger dropdown-item" href="">{{ user.username }}</a></li>
-		        <li><a class="dropdown-item" href="{% url 'listar_notificacoes' %}">Notificações</a></li>
 	            <li><a class="dropdown-item" href="{% url 'add_carro' %}">Adicionar Automovel</a></li>
 		        <li><a class="dropdown-item" href="{% url 'add_marca' %}">Adicionar Marca</a></li>
 		        <li><a class="dropdown-item" href="{% url 'add_modelo' %}">Adicionar Modelo</a></li>

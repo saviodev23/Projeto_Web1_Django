@@ -25,7 +25,7 @@
       <p><strong>Valor de Locação:</strong> R$ {{ carros.valor_locacao }} dia</p>
       <a href="{% url 'fazer_reserva' carros.id %}" class="btn btn-primary">Fazer Reserva</a>
 	  <a href="/edit/automovel/{{ carros.id }}" class="btn btn-success">Editar Carro</a>
-	  <a href="/remove/automovel/{{ carros.id }}" class="btn btn-outline-danger">Deletar Carro</a>
+	  <a href="/remove/automovel/{{ carros.id }}" class="btn btn-danger">Deletar Carro</a>
 	  <a class="btn btn-secondary" href="{% url 'home' %}">Voltar</a>
     </div>
 {% else %}
@@ -44,7 +44,7 @@
 	        <p><strong>Ficará Disponivel em:</strong> {{ loc.data_devolucao }} as {{ loc.hora_devolucao }}</p>
 	    {% endfor %}
 	  <a href="/edit/automovel/{{ carros.id }}" class="btn btn-success">Editar Carro</a>
-	  <a href="/remove/automovel/{{ carros.id }}" class="btn btn-outline-danger">Deletar Carro</a>
+	  <a href="/remove/automovel/{{ carros.id }}" class="btn btn-danger">Deletar Carro</a>
 	  <a class="btn btn-secondary" href="{% url 'home' %}">Voltar</a>
     </div>
 {% endif %}

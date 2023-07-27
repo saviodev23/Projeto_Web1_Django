@@ -8,11 +8,14 @@
 	<h5><strong>Status Atual:</strong> {{ reserva.status }}</h5>
   <form class="mt-4" method="post">
     {% csrf_token %}
-{#    {{ form.as_p }}#}
-	{% bootstrap_form form %}
+	{% bootstrap_form form form_class='small-form' %}
     <button type="submit" class="btn btn-primary">Salvar Alterações</button>
     <a href="{% url 'listar_reservas_admin' %}" class="btn btn-secondary">Cancelar</a>
-	<a href="/remover/reserva/{{ reserva.id }}" class="btn btn-outline-danger">Deletar Reserva</a>
   </form>
+
 </div>
+
 {% endblock %}
+
+
+{#	<a href="/remover/reserva/{{ reserva.id }}" class="btn btn-outline-danger">Deletar Reserva</a>#}

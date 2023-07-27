@@ -1,14 +1,23 @@
 {% extends 'assets/static/base.html' %}
+{% load bootstrap5 %}
 {% block content %}
 <div class="container py-5">
-  <h2>Editar Modelo</h2>
-
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Salvar</button>
-{#    <a href="{% url 'detalhes_automovel'  %}" class="btn btn-secondary">Cancelar</a>#}
-  </form>
-<a class="btn btn-outline-danger" href="{% url 'add_modelo' %}">Voltar</a>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body">
+          <h2 class="text-center mb-4">Editar Modelo</h2>
+          <form method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="text-center mt-4">
+              <button type="submit" class="btn btn-primary">Salvar</button>
+              <a class="btn btn-secondary" href="{% url 'add_modelo' %}">Voltar</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
