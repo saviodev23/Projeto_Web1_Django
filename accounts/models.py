@@ -6,7 +6,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     nome = models.CharField(max_length=100, blank=True, null=True)
     cpf = models.CharField(max_length=30, blank=True, null=True)
     endereco = models.CharField(max_length=50, blank=True, null=True)
-    telefone = models.CharField(max_length=10, blank=True, null=True)
+    telefone = models.CharField(max_length=20, blank=True, null=True)
     email = models.CharField(max_length=100, unique=True, null=True, blank=True)
 
     groups = models.ManyToManyField(

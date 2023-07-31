@@ -1,22 +1,23 @@
 {% extends 'assets/static/base.html' %}
-{% block content %}
 {% load static %}
+
+{% block content %}
 <div class="container py-5">
   <h2 class="text-center">Minhas Reservas</h2>
 
-    {% if messages %}
-	    <ul class="messages">
-	        {% for message in messages %}
-	            {% if message.tags %}
-		            <p class="message">{{ message }}</p>
-	            {% endif %}
-	        {% endfor %}
-	    </ul>
-	{% endif %}
+  {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        {% if message.tags %}
+          <p class="message">{{ message }}</p>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  {% endif %}
 
   {% if reservas %}
     <div class="table-responsive">
-      <table class="table table-bordered mt-5">
+      <table class="table table-bordered table-striped mt-5">
         <thead>
           <tr>
             <th>Marca e Modelo</th>
@@ -25,7 +26,7 @@
             <th>Hora de Locação</th>
             <th>Data de Devolução</th>
             <th>Hora de Devolução</th>
-            <th>KM tual do Veículo</th>
+            <th>KM Atual do Veículo</th>
             <th>Limite de KM</th>
             <th>Valor de Locação</th>
             <th>Status de Locação</th>
@@ -34,25 +35,27 @@
         </thead>
         <tbody>
           {% for reserva in reservas %}
-          <tr>
-            <td><strong>{{ reserva.automovel.modelo.marca.descricao }} - {{ reserva.automovel.modelo.descricao }}</strong></td>
-            <td>
-              {% if reserva.automovel.imagem %}
-                <img class="car-img" src="{{ reserva.automovel.imagem.url }}" alt="Imagem do automóvel">
-              {% else %}
-                <img class="car-img" src="{% static 'imagens/error.png' %}" alt="Imagem indisponível">
-              {% endif %}
-            </td>
-            <td>{{ reserva.data_locacao }}</td>
-            <td>{{ reserva.hora_locacao }}</td>
-            <td>{{ reserva.data_devolucao }}</td>
-            <td>{{ reserva.hora_devolucao }}</td>
-            <td>{{ reserva.automovel.quilometragem }}</td>
-            <td>{{ reserva.limite_km_dia }}</td>
-            <td>R$ {{ reserva.valor_locacao }}</td>
-            <td>{{ reserva.status }}</td>
-            <td><a class="btn btn-outline-danger" href="{% url 'cancelar_reserva' reserva.automovel.id %}">Cancelar</a></td>
-          </tr>
+            <tr>
+              <td><strong>{{ reserva.automovel.modelo.marca.descricao }} - {{ reserva.automovel.modelo.descricao }}</strong></td>
+              <td>
+                {% if reserva.automovel.imagem %}
+                  <img class="car-img" src="{{ reserva.automovel.imagem.url }}" alt="Imagem do automóvel">
+                {% else %}
+                  <img class="car-img" src="{% static 'imagens/error.png' %}" alt="Imagem indisponível">
+                {% endif %}
+              </td>
+              <td>{{ reserva.data_locacao }}</td>
+              <td>{{ reserva.hora_locacao }}</td>
+              <td>{{ reserva.data_devolucao }}</td>
+              <td>{{ reserva.hora_devolucao }}</td>
+              <td>{{ reserva.automovel.quilometragem }}</td>
+              <td>{{ reserva.limite_km_dia }}</td>
+              <td>R$ {{ reserva.valor_locacao }}</td>
+              <td>{{ reserva.status }}</td>
+              <td>
+                <a class="btn btn-danger" href="{% url 'cancelar_reserva' reserva.automovel.id %}">Cancelar</a>
+              </td>
+            </tr>
           {% endfor %}
         </tbody>
       </table>
@@ -63,20 +66,12 @@
   <a class="btn btn-secondary" href="{% url 'home' %}">Voltar</a>
 </div>
 
-	<style>
-	th{
-		max-width: 110px;
-		max-height: 30px;
-	}
-	td{
-		max-width: 100px;
-		max-height: 10px;
-	}
-
+<style>
 	.car-img {
 	  max-width: 80px; /* Defina o tamanho desejado para a imagem */
 	  max-height: 60px;
 	}
+
 	.message {
 	    background-color: #007bff;
 		padding: 10px;
@@ -84,6 +79,7 @@
 	    color: #fff;
 		font-size: 16px;
 		text-align: center;
+		margin-top: 30px;
 	}
 
 	  @media (max-width: 576px) {
@@ -93,17 +89,11 @@
 	      text-align: center;
       }
   }
-	#intro {
-		height: 100vh;
+
+	body{
+		background: #cddad7;
 	}
 
-	      /* Height for devices larger than 576px */
-	@media (min-width: 992px) {
-		#intro {
-			margin-top: -58.59px;
-		}
-	}
-
-	</style>
+</style>
 
 {% endblock %}

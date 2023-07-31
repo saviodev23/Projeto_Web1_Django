@@ -1,49 +1,37 @@
 {% extends 'assets/static/base.html' %}
 {% load static %}
-{% block title %}Registrar{% endblock %}
-
+{% load bootstrap5 %}
 {% block content %}
 <div class="mask d-flex align-items-center h-100">
-	<div id="intro" class="col-md-4 mt-5 container">
-		<div class="col-xl-5 col-md-8">
+	<div class="col-md-6 col-lg-4 mx-auto">
+		<div class="col-12">
 
-		    <div>
-			   <h4 class="text-center">Criar uma conta</h4>
-			    {% if messages %}
-			        <ul class="messages">
-			            {% for message in messages %}
-			            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-			            {% endfor %}
-			        </ul>
-		        {% endif %}
-			    <form class="bg-white rounded-3 shadow-5-strong p-5 form-teste" method="post">
-			        {% csrf_token %}
-			        {{ form.as_p }}
-			        <button type="submit" class="btn btn-primary btn-block">Registrar</button>
-			    </form>
+		    <div class="text-center mb-4 titulo">
+			   <h4>Criar uma conta</h4>
 		    </div>
+
+		    {% if messages %}
+		        <ul class="messages">
+		            {% for message in messages %}
+		            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+		            {% endfor %}
+		        </ul>
+		    {% endif %}
+
+		    <form class="bg-white rounded-3 shadow p-5 form-teste" method="post">
+		        {% csrf_token %}
+		        {% bootstrap_form form %}
+
+		        <button type="submit" class="btn btn-primary btn-block mt-4">Registrar</button>
+		    </form>
 		</div>
+	</div>
 </div>
-</div>
+
 <style>
-	#intro {
-	height: 100vh;
-	}
 
-	body {
-		background-image: url({% static "imagens/locadora2.jpg" %});
-		background-size: cover;
-		background-position: center;
-	}
-	.form-teste{
-		width: 380px;
-	}
-    @media (max-device-width: 440px) {
-        .form-teste{
-	        width: 100%;
-        }
-    }
-
-
+  body{
+	  background-color: #b7d4ff;
+  }
 </style>
 {% endblock %}

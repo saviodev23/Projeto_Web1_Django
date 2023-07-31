@@ -3,66 +3,86 @@
 
 {% block content %}
 <div class="container py-5">
-    <div class="row justify-content-center">
+    <h2>Gerenciar Marcas</h2>
+    <ul class="nav nav-tabs mt-4" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="add-marca-tab" data-toggle="tab" href="#add-marca" role="tab" aria-controls="add-marca" aria-selected="true">Adicionar Marca</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="listar-marcas-tab" data-toggle="tab" href="#listar-marcas" role="tab" aria-controls="listar-marcas" aria-selected="false">Listar Marcas</a>
+        </li>
+    </ul>
 
-        <div class="col-xl-8 col-lg-10 col-md-12">
-            <div class="card o-hidden border-0 shadow-lg">
-                <div class="card-body p-0">
-                    <div class="row" style="justify-content: center">
-                        <div class="col-lg-6 d-none d-lg-block bg-login-image">
-	                        <div class="col-lg-6"></div>
-	                            <div class="p-5">
-	                                <div class="text-center">
-	                                    <h1 class="h4 text-gray-900 mb-4">Cadastrar Nova Marca</h1>
-	                                </div>
-	                                <form enctype="multipart/form-data" class="user" method="POST">
-	                                    {% csrf_token %}
-	                                    {% bootstrap_form form %}
-	                                    <button class="btn btn-primary btn-user btn-block" type="submit">Cadastrar</button>
-	                                </form>
-
-	                            </div>
+    <div class="tab-content mt-4" id="myTabContent">
+        <!-- Adicionar Marca -->
+        <div class="tab-pane fade show active" id="add-marca" role="tabpanel" aria-labelledby="add-marca-tab">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card o-hidden border-0 shadow-lg">
+                        <div class="card-body p-5">
+                            <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-4">Cadastrar Nova Marca</h1>
+                            </div>
+                            <form enctype="multipart/form-data" method="POST">
+                                {% csrf_token %}
+                                {% bootstrap_form form %}
+                                <button class="btn btn-primary btn-user btn-block mt-3" type="submit">Cadastrar</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-xl-8 col-lg-10 col-md-12 mt-5">
-            <div class="card o-hidden border-0 shadow-lg">
-                <div class="card-body p-0">
-                    <div class="table-responsive">
-                        <h3 class="p-4">Lista de Marcas</h3>
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">Descrição</th>
-                                    <th scope="col">Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for marca in marcas %}
-                                <tr>
-                                    <td>{{ marca.id }}</td>
-                                    <td>{{ marca.descricao }}</td>
-                                    <td>
-                                        <a href="{% url 'editar_marca' marca.id %}" class="btn btn-success btn-sm">Editar</a>
-                                        <a href="/remove/marca/{{ marca.id }}" class="btn btn-danger btn-sm">Remover</a>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+        <!-- Listar Marcas -->
+        <div class="tab-pane fade" id="listar-marcas" role="tabpanel" aria-labelledby="listar-marcas-tab">
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-8">
+                    <div class="card o-hidden border-0 shadow-lg">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <h3 class="p-4">Lista de Marcas</h3>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Descrição</th>
+                                            <th scope="col">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for marca in marcas %}
+                                        <tr>
+                                            <td>{{ marca.id }}</td>
+                                            <td>{{ marca.descricao }}</td>
+                                            <td>
+                                                <a href="{% url 'editar_marca' marca.id %}" class="btn btn-success btn-sm">Editar</a>
+                                                <a href="/remove/marca/{{ marca.id }}" class="btn btn-danger btn-sm">Remover</a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="col-12 mt-4 text-center">
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-6">
             <a class="btn btn-secondary" href="{% url 'home' %}">Voltar</a>
         </div>
     </div>
 </div>
+
+	<style>
+		body{
+			background: #cddad7;
+		}
+
+	</style>
 
 {% endblock %}

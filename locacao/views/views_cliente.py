@@ -85,9 +85,6 @@ def cancelar_reserva(request, carro_id):
             reserva.status = 'Em cancelamento'
             reserva.save()
 
-            # admin = User.objects.get(is_superuser=True)
-            # notify.send(sender=user_id, recipient=admin, verb='pedido de cancelamento', description='Um cliente fez um pedido de cancelamento de reserva.')
-
             messages.success(request, f'Pedido de cancelamento do veículo {reserva.automovel.modelo.marca.descricao} - {reserva.automovel.modelo.descricao} enviado com sucesso!')
         else:
             if reserva.devolvido == False and reserva.status == 'Retirado':

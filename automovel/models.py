@@ -1,4 +1,6 @@
 from django.db import models
+
+
 class Marca(models.Model):
     descricao = models.CharField(max_length=20, blank=True, null=True)
 
@@ -10,6 +12,7 @@ class Modelo(models.Model):
 
     def __str__(self):
         return self.descricao
+
 
 class Automovel(models.Model):
     COR_CHOICES = (
@@ -48,8 +51,6 @@ class Automovel(models.Model):
 
     def __str__(self):
         return self.modelo.marca.descricao
-
-
 
 
 

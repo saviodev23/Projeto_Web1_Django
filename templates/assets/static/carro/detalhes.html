@@ -4,9 +4,9 @@
 <!-- Detalhes do veículo -->
 <div id="intro" class="container py-5">
   <div id="abaixar" class="row">
-    <div class="col-md-6">
+    <div class="col-md-6 img-card">
         {% if carros.imagem == "" or carros.imagem == null %}
-            <img class="card-img-top" src="{% static 'imagens/error.png' %}" alt="Carro 1">
+            <img class="card-img-top car-imag" src="{% static 'imagens/error.png' %}" alt="Carro 1">
         {% else %}
             <img class="card-img-top" src="{{ carros.imagem.url }}" alt="Carro 1">
         {% endif %}
@@ -50,6 +50,8 @@
 {% endif %}
   </div>
 </div>
+
+
 	<style>
 		#intro {
 	        height: 100vh;
@@ -63,6 +65,7 @@
 	      #abaixar {
 		      padding-top: 1px;
 	      }
+
       }
 
 	      /* Height for devices larger than 576px */
@@ -72,8 +75,13 @@
 	        }
 		}
 
+		body{
+			background: #cddad7;
+		}
 
+		img{
+            max-width: 550px;
+            height: 300px;
+		}
 	</style>
 {% endblock %}
-
-

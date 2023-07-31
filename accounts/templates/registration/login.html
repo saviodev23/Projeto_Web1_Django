@@ -1,5 +1,6 @@
 {% extends 'assets/static/base.html' %}
 {% block content %}
+{% load bootstrap5 %}
 {% load static %}
 
 <div id="intro" class="bg-image shadow-2-strong overlay">
@@ -9,34 +10,26 @@
       <div class="row justify-content-center">
         <div class="col-xl-5 col-md-8">
           <form class="bg-white rounded shadow-5-strong p-5" method="post">
-            <!-- Email input -->
-            <div class="form-outline mb-4">
-	        {% if messages %}
-		        <ul class="messages text-black">
-		            {% for message in messages %}
-		            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-		            {% endfor %}
-		        </ul>
-		    {% endif %}
+            <h4 class="text-center mb-4">Login</h4>
+            {% if messages %}
+              <ul class="messages text-black">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
 
-            </div>
-                {{ form.as_p }}
-              {% csrf_token %}
+            {% csrf_token %}
+            {% bootstrap_form form %}
 
             <div class="row mb-4">
-
-                <div class="form-check">
-
-                </div>
-
-
               <div class="col text-center">
-{#                <a href="{% url 'password_reset' %}">Forgot password?</a>#}
+{#                <a href="{% url 'password_reset' %}">Esqueceu sua senha?</a>#}
               </div>
             </div>
 
             <button type="submit" class="btn btn-primary btn-block">Entrar</button>
-	          <a href="{% url 'register' %}">Faça seu registro</a>
+            <a href="{% url 'register' %}">Faça seu registro</a>
 
           </form>
         </div>
@@ -44,23 +37,9 @@
     </div>
   </div>
 </div>
-
     <style>
-	      #intro {
-	        height: 100vh;
-	      }
-
-	      /* Height for devices larger than 576px */
-	      @media (min-width: 992px) {
-	        #intro {
-	          margin-top: -58.59px;
-	        }
-	      }
-
 	  body {
-	    background-image: url({% static "imagens/locadora2.jpg" %});
-	    background-size: cover;
-	    background-position: center;
+		background-color: #b7d4ff;
 	  }
 
     </style>

@@ -7,7 +7,7 @@ class CustomUserCreationForm(forms.Form):
     nome = forms.CharField(max_length=100, label="Nome Completo")
     cpf = forms.CharField(max_length=30)
     endereco = forms.CharField(max_length=50)
-    telefone = forms.CharField(max_length=10)
+    telefone = forms.CharField(max_length=20)
     email = forms.EmailField(max_length=100)
     senha = forms.CharField(label='Senha', widget=forms.PasswordInput())
     confirmar_senha = forms.CharField(label='Confirmar Senha', widget=forms.PasswordInput())

@@ -1,0 +1,85 @@
+/*Register  */
+.mask {
+    min-height: 100vh;
+    background-color: #b7d4ff;
+  }
+
+.form-teste{
+	margin-bottom: 50px;
+}
+.titulo{
+	margin-top: 50px;
+}
+
+
+/*inicio Login*/
+
+#intro {
+    height: 100vh;
+}
+
+/* Height for devices larger than 576px */
+@media (min-width: 992px) {
+    #intro {
+      margin-top: -58.59px;
+    }
+}
+/*fim de login*/
+
+/*inicio index index*/
+.card{
+    justify-content: center;
+    align-items: center;
+}
+
+.valor-locacao {
+    color: #007bff;
+    font-size: 1.25rem;
+    display: block;
+    margin-top: 5px;
+}
+
+@media (max-width: 576px) {
+  .valor-locacao {
+      font-size: 3.5vw; /* Ajuste o valor para telas pequenas */
+  }
+    .box-shadow{
+        height: 400px;
+    }
+}
+
+.icons{
+    margin-top: 10px;
+    max-width: 100px;
+    height: 50px;
+    color: #007bff;
+}
+
+/*cards de carros e requisitos para aluguel*/
+.card-title{
+    color: black;
+}
+
+.card-text{
+    color: black;
+    font-size: 16px;
+    font-family: sans-serif;
+}
+/*cards de carros e requisitos para aluguel*/
+.title-section{
+    color: black;
+    font-family: 'Lucida Grande', Arial, sans-serif;
+    font-size: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+.text-section{
+    color: black;
+    font-family: sans-serif;
+    font-size: 16px;
+    text-align: center;
+}
+
+
+/*fim de Index*/
+

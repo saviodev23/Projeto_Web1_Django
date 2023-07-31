@@ -6,14 +6,14 @@
 
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav ml-auto">
-	  {% if user.is_authenticated %}
-	  <li class="nav-item">
-        <a class="nav-link" href="{% url 'listar_reservas' %}">Reservas</a>
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'listar_reservas' %}">Minhas Reservas</a>
       </li>
-	  <li class="nav-item">
+      <li class="nav-item">
         <a class="nav-link" href="{% url 'listar_reservas_admin' %}">Reservas Admin</a>
       </li>
-	  {% endif %}
+      {% endif %}
       <li class="nav-item active">
         <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
       </li>
@@ -22,21 +22,100 @@
       </li>
     </ul>
 
-  {% if user.is_authenticated %}
-	<ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-	    <li class="nav-item dropdown">
-	        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-	        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-	            <li><a class="text-danger dropdown-item" href="">{{ user.username }}</a></li>
-	            <li><a class="dropdown-item" href="{% url 'add_carro' %}">Adicionar Automovel</a></li>
-		        <li><a class="dropdown-item" href="{% url 'add_marca' %}">Adicionar Marca</a></li>
-		        <li><a class="dropdown-item" href="{% url 'add_modelo' %}">Adicionar Modelo</a></li>
-	            <li><hr class="dropdown-divider" /></li>
-{#		        <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>#}
-	        </ul>
-	    </li>
-	</ul>
-  {% endif %}
+    {% if user.is_authenticated %}
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item" href="">{{ user.username }}</a></li>
+          <li><hr class="dropdown-divider" /></li>
+          <li><a class="dropdown-item" href="{% url 'add_carro' %}">Adicionar Automóvel</a></li>
+          <li><a class="dropdown-item" href="{% url 'add_marca' %}">Adicionar Marca</a></li>
+          <li><a class="dropdown-item" href="{% url 'add_modelo' %}">Adicionar Modelo</a></li>
+{#	      <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>#}
+        </ul>
+      </li>
+    </ul>
+    {% endif %}
   </div>
 </nav>
 
+<style>
+  .navbar {
+    background-color: #333;
+    padding: 10px 20px;
+  }
+
+  .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 16px;
+    padding: 10px 15px;
+  }
+
+  .navbar-nav .nav-item.active .nav-link {
+    border-bottom: 3px solid #fff;
+  }
+
+  .navbar-toggler {
+    border: none;
+    background: transparent;
+  }
+
+  .navbar-toggler-icon {
+    color: #fff;
+  }
+
+  .navbar-nav .dropdown-menu {
+    background-color: #333;
+    border: none;
+  }
+
+  .dropdown-item {
+    color: #fff;
+  }
+
+  .dropdown-item:hover {
+    background-color: #444;
+  }
+
+  .dropdown-divider {
+    background-color: #444;
+  }
+
+  .navbar-nav .dropdown-menu a {
+    padding: 10px 20px;
+  }
+
+  .navbar-nav .dropdown-menu a:hover {
+    background-color: #444;
+  }
+
+  .navbar-nav .dropdown-menu-end {
+    right: 0;
+    left: auto;
+  }
+
+  .navbar-nav .dropdown-item.text-danger:hover {
+    color: #dc3545;
+    background-color: transparent;
+  }
+
+  .navbar-nav.ms-auto {
+    align-items: center;
+  }
+
+  .fas.fa-user.fa-fw {
+    font-size: 24px;
+  }
+
+  /* Media query para ajustar tamanho da fonte nos ícones para telas menores */
+  @media (max-width: 767.98px) {
+    .fas.fa-user.fa-fw {
+      font-size: 20px;
+    }
+  }
+</style>

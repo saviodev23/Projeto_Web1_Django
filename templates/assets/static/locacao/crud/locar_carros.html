@@ -1,13 +1,13 @@
 {% extends 'assets/static/base.html' %}
 
 {% block content %}
-{% for message in messages %}
-    {% if message.tags %}
-        <p class="message mt-4">{{ message }}</p>
-    {% endif %}
-{% endfor %}
-
 <div class="container py-5">
+	{% for message in messages %}
+	    {% if message.tags %}
+	        <p class="message mt-4">{{ message }}</p>
+	    {% endif %}
+	{% endfor %}
+
   <h2 class="text-center">Pedidos de Reserva dos Clientes</h2>
 
   <!-- Formulário de busca -->
@@ -19,43 +19,34 @@
   </form>
 
   {% if reservas %}
-  <ul id="intro" class="list-group mt-5">
-    {% for reserva in reservas %}
-      <li class="list-group-item">
-        <a id="edit" href="{% url 'editar_reserva' reserva.id %}">{{ reserva.cliente.nome }} Carro: {{ reserva.automovel.modelo.marca.descricao }} - {{ reserva.automovel.modelo.descricao }}/{{ reserva.automovel.ano_fabricacao }} Chassi: {{ reserva.automovel.chassi }}</a>
-      </li>
-    {% endfor %}
-  </ul>
+    <ul class="list-group mt-5">
+      {% for reserva in reservas %}
+        <li class="list-group-item">
+          <a href="{% url 'editar_reserva' reserva.id %}" id="edit">
+            {{ reserva.cliente.nome }} - Carro: {{ reserva.automovel.modelo.marca.descricao }} - {{ reserva.automovel.modelo.descricao }} / {{ reserva.automovel.ano_fabricacao }} - Chassi: {{ reserva.automovel.chassi }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
   {% else %}
-  <h5 id="intro" class="mt-5">Sem solicitações de Reservas no momento.</h5>
+    <h5 class="mt-5">Sem solicitações de Reservas no momento.</h5>
   {% endif %}
-  <a class="btn btn-secondary" href="{% url 'home' %}">Voltar</a>
+  <a class="btn btn-secondary mt-4" href="{% url 'home' %}">Voltar</a>
 </div>
 
-	<style>
+<style>
 	.list-group-item{
 		background: #32373b;
 	}
-		#edit{
-			color: white;
-			font-size: 20px;
-			text-decoration: none;
-		}
-		#edit:hover{
-			transition: 0.2s;
-			color: #e8dede;
-		}
-
-		#intro {
-	        height: 100vh;
-		}
-
-	      /* Height for devices larger than 576px */
-		@media (min-width: 992px) {
-	        #intro {
-	          margin-top: -58.59px;
-	        }
-		}
+	#edit{
+		color: white;
+		font-size: 20px;
+		text-decoration: none;
+	}
+	#edit:hover{
+		transition: 0.2s;
+		color: #e8dede;
+	}
 
 	.message {
 	    background-color: #007bff;
@@ -73,6 +64,9 @@
 		      text-align: center;
 	      }
       }
-	</style>
+	body{
+		background: #cddad7;
+	}
+</style>
 {% endblock %}
 
