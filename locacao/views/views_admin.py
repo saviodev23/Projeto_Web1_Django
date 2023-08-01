@@ -6,7 +6,7 @@ from locacao.models import Locacao
 from decimal import Decimal
 
 def listar_reservas_admin(request):
-    reservas = Locacao.objects.all()
+    reservas = Locacao.objects.all().order_by('-data_locacao')
 
     search_query = request.GET.get('search')
     if search_query:
@@ -18,7 +18,7 @@ def listar_reservas_admin(request):
     context = {
         'reservas': reservas
     }
-    return render(request, 'assets/static/locacao/crud/locar_carros.html', context)
+    return render(request, 'assets/static/locacao/crud/lista_reservas_admin.html', context)
 
 def editar_reserva(request, reserva_id):
     reserva = get_object_or_404(Locacao, id=reserva_id)
@@ -41,12 +41,15 @@ def editar_reserva(request, reserva_id):
             reserva.valor_locacao = valor_soma
             reserva.hora_locacao = hora_locacao
             reserva.hora_devolucao = hora_devolucao
+            # calculo da qtd de KM/dia
+            limite_km = (quantidade_dias * 100)
+            reserva.limite_km_dia = limite_km
             reserva.save()
 
             #aqui eu faço o calculo da multa caso o cliente ultrapasse o limite de KM/dia
             if reserva.quilometragem > reserva.limite_km_dia:
                 diferenca_km = (reserva.quilometragem - reserva.limite_km_dia)
-                multa = (diferenca_km * 0.15)
+                multa = (diferenca_km * 0.15) #multa de 15%
                 decimal = Decimal(multa)#conversão de Int para decimal
 
                 reserva.valor_locacao = (reserva.valor_locacao + decimal)
@@ -62,10 +65,14 @@ def editar_reserva(request, reserva_id):
             #isso é para atualizar a disponibilidade do automovel quando o cliente retirar ou devolve-lo
             if reserva.status == 'Devolvido' or reserva.status == 'Cencelado':
                 reserva.automovel.disponivel = True
+                reserva.devolvido = True
                 reserva.automovel.save()
+                reserva.save()
             if reserva.status == 'Retirado':
                 reserva.automovel.disponivel = False
+                reserva.devolvido = False
                 reserva.automovel.save()
+                reserva.save()
 
             return redirect('listar_reservas_admin')
 

@@ -13,7 +13,7 @@ class Locacao(models.Model):
     data_devolucao = models.DateField(blank=True, null=True, verbose_name='Data de Devolução')
     hora_locacao = models.TimeField(verbose_name='Hora de Locação')
     hora_devolucao = models.TimeField(verbose_name='Hora de Devolução')
-    quilometragem = models.IntegerField(default=100)
+    quilometragem = models.IntegerField(default=0)
     valor_locacao = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True, verbose_name='Preço de Locação')
     devolvido = models.BooleanField(blank=True, null=True)
     cliente = models.ForeignKey(User, on_delete=models.CASCADE)

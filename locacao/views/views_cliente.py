@@ -15,7 +15,7 @@ def listar_reservas(request):
         context = {
             'reservas': reservas
         }
-        return render(request, 'assets/static/locacao/carros_locados.html', context)
+        return render(request, 'assets/static/locacao/minhas_reservas.html', context)
 
 def fazer_reserva(request, carro_id):
     if request.user.is_authenticated:
@@ -72,14 +72,11 @@ def fazer_reserva(request, carro_id):
     else:
         return HttpResponse('faça login')
 
-    return render(request, 'assets/static/locacao/locacao.html', context)
+    return render(request, 'assets/static/locacao/fazer_reserva.html', context)
 
-def cancelar_reserva(request, carro_id):
+def cancelar_reserva(request, reserva_id):
     if request.user.is_authenticated:
-        user_id = request.user.id
-        carro = get_object_or_404(Automovel, pk=carro_id)
-
-        reserva = Locacao.objects.filter(cliente=user_id, automovel=carro).first()
+        reserva = Locacao.objects.get(id=reserva_id)
 
         if reserva.status == 'Pendente':
             reserva.status = 'Em cancelamento'

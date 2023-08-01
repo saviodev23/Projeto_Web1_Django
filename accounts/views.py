@@ -67,3 +67,12 @@ def login_user(request):
         form = CustomLoginForm()
 
     return render(request, 'registration/login.html', {'form': form})
+
+from django.contrib.auth import views as auth_views
+
+# Views personalizadas para login e logout
+class CustomLoginView(auth_views.LoginView):
+    template_name = 'registration/login.html'
+
+class CustomLogoutView(auth_views.LogoutView):
+    template_name = 'registration/logout.html'

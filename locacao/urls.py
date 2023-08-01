@@ -1,15 +1,16 @@
 from django.urls import path
 from.views.views_cliente import fazer_reserva, listar_reservas, cancelar_reserva
-from.views.views import home
+from.views.views import home, sobre
 from.views.views_admin import listar_reservas_admin, editar_reserva, remover_reserva, confirmar_remover_reserva
 
 urlpatterns = [
     #views
     path('', home, name="home"),
+    path('sobre/', sobre, name="sobre"),
     #views cliente
     path('fazer/reserva/<int:carro_id>', fazer_reserva, name="fazer_reserva"),
     path('lista/reservas/', listar_reservas, name="listar_reservas"),
-    path('cancelar/reserva/<int:carro_id>', cancelar_reserva, name="cancelar_reserva"),
+    path('cancelar/reserva/<int:reserva_id>', cancelar_reserva, name="cancelar_reserva"),
 
     #views admin
     path('reservas/admin', listar_reservas_admin, name='listar_reservas_admin'),

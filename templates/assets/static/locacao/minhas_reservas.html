@@ -53,7 +53,7 @@
               <td>R$ {{ reserva.valor_locacao }}</td>
               <td>{{ reserva.status }}</td>
               <td>
-                <a class="btn btn-danger" href="{% url 'cancelar_reserva' reserva.automovel.id %}">Cancelar</a>
+                <a class="btn btn-danger" href="{% url 'cancelar_reserva' reserva.id %}">Cancelar</a>
               </td>
             </tr>
           {% endfor %}
@@ -67,6 +67,9 @@
 </div>
 
 <style>
+	.table{
+		background: white;
+	}
 	.car-img {
 	  max-width: 80px; /* Defina o tamanho desejado para a imagem */
 	  max-height: 60px;

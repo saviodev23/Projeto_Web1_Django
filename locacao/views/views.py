@@ -20,3 +20,6 @@ def home(request):
         'carros': carros
     }
     return render(request, 'assets/static/index.html', context)
+
+def sobre(request):
+    return render(request, 'assets/static/sobre.html')
