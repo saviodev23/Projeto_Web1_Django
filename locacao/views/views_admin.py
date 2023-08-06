@@ -1,11 +1,15 @@
 from django.contrib import messages
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
-from locacao.forms import FormEditLocacao
+
+from automovel.models import Automovel
+from locacao.forms import FormEditLocacao, FormAdminLocacao
 from locacao.models import Locacao
 from decimal import Decimal
 
 from locacaoVeiculos.utils import group_required
+
+
 
 @group_required(['Gerente', 'Vendedor'], "/accounts/login/") # [ 'grupo1', 'grupo2' ]
 def listar_reservas_admin(request):
@@ -100,3 +104,84 @@ def confirmar_remover_reserva(request, reserva_id):
     Locacao.objects.get(pk=reserva_id).delete()
 
     return redirect('listar_reservas_admin')
+
+def alugar_veiculo(request, carro_id):
+    if request.user.is_authenticated:
+        carro = Automovel.objects.get(id=carro_id)
+        if request.method == 'POST':
+            form = FormAdminLocacao(request.POST)
+            if form.is_valid():
+                data_locacao = form.cleaned_data['data_locacao']
+                data_devolucao = form.cleaned_data['data_devolucao']
+                hora_locacao = form.cleaned_data['hora_locacao']
+                hora_devolucao = form.cleaned_data['hora_devolucao']
+                cliente = form.cleaned_data['cliente'].id,
+
+                cliente_id = cliente
+                print(f'cliente',cliente_id)
+
+                status = form.cleaned_data['status'],
+
+                # aqui eu faço a contagem de dias atraves da data de locacao e devolucao
+                diferenca_dias = (data_devolucao - data_locacao)
+                quantidade_dias = diferenca_dias.days
+                print(quantidade_dias)
+                valor_soma = (carro.valor_locacao * quantidade_dias)
+
+                # calculo da qtd de KM/dia
+                limite_km = (quantidade_dias * 100)
+
+                reserva = Locacao.objects.create(
+                    automovel=carro,
+                    cliente_id=cliente_id,
+                    data_locacao=data_locacao,
+                    data_devolucao=data_devolucao,
+                    hora_locacao=hora_locacao,
+                    hora_devolucao=hora_devolucao,
+                    valor_locacao=valor_soma,
+                    limite_km_dia=limite_km,
+                    quilometragem=0,
+                    devolvido=False,
+                    status=status
+                )
+                reserva.save()
+                # deixando o automovel indisponivel para não possibilitar algum clienta fazer a reserva dele
+                return redirect('listar_reservas')
+        else:
+            form = FormAdminLocacao()
+
+        context = {
+            'form': form
+        }
+        return render(request, 'assets/locacao_admins/add_locacao.html', context)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

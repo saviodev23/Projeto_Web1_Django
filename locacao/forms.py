@@ -1,5 +1,6 @@
 from django import forms
-from django.forms import ModelForm
+from django.contrib.auth.models import User
+
 from locacao.models import Locacao
 
 
@@ -25,3 +26,14 @@ class FormEditLocacao(forms.ModelForm):
             'valor_locacao': forms.NumberInput(attrs={'class': 'form-control'}),
             'quilometragem': forms.NumberInput(attrs={'class': 'form-control'}),
         }
+
+class FormAdminLocacao(forms.ModelForm):
+    # data_locacao = forms.DateField(label='Data de Locação')
+    # data_devolucao = forms.DateField(label='Data de Devolução')
+    # hora_locacao = forms.TimeField(label='Hora de Locação')
+    # hora_devolucao = forms.TimeField(label='Hora de Devolução')
+    # cliente = forms.ModelChoiceField(queryset=User.objects.all())  # Usando ModelChoiceField
+
+    class Meta:
+        model = Locacao
+        fields = ['data_locacao', 'hora_locacao', 'data_devolucao', 'hora_devolucao', 'cliente', 'status']
