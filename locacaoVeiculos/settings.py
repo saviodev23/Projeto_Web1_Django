@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'accounts.backend.CustomBackend',
+    # 'accounts.backend.CustomBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
@@ -130,8 +130,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-LOGIN_REDIRECT_URL = 'home'  # Substitua 'home' pela URL desejada após o login
-
+LOGIN_REDIRECT_URL = '/'  # Substitua 'home' pela URL desejada após o login
+LOGOUT_REDIRECT_URL = '/accounts/login'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 

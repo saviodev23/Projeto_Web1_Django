@@ -1,4 +1,4 @@
-{% extends 'assets/static/base.html' %}
+{% extends 'assets/base.html' %}
 {% block content %}
 {% load bootstrap5 %}
 {% load static %}
@@ -21,7 +21,7 @@
 
             {% csrf_token %}
             {% bootstrap_form form %}
-
+	          <input type="hidden" name="next" value="{{ next }}">
             <div class="row mb-4">
               <div class="col text-center">
 {#                <a href="{% url 'password_reset' %}">Esqueceu sua senha?</a>#}

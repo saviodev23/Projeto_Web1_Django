@@ -19,7 +19,7 @@ def home(request):
     context = {
         'carros': carros
     }
-    return render(request, 'assets/static/index.html', context)
+    return render(request, 'assets/index.html', context)
 
 def sobre(request):
-    return render(request, 'assets/static/sobre.html')
+    return render(request, 'assets/sobre.html')

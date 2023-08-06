@@ -31,11 +31,15 @@ def group_required(groups, login_url=None, raise_exception=False):
     return user_passes_test(check_perms, login_url=login_url)
 
 
+#executa apenas uma vez para criar os grupos quando abre a página home
 def create_groups():
     if not Group.objects.exists():
-        groupAdmin = Group(name='admin')
+        groupAdmin = Group(name='Gerente')
         groupAdmin.save()
 
-        groupAdmin = Group(name='cliente')
+        groupAdmin = Group(name='Cliente')
+        groupAdmin.save()
+
+        groupAdmin = Group(name='Vendedor')
         groupAdmin.save()
 

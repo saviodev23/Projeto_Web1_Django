@@ -1,4 +1,4 @@
-{% extends 'assets/static/base.html' %}
+{% extends 'assets/base.html' %}
 {% load bootstrap5 %}
 {% block content %}
 <div class="container py-5">
@@ -6,13 +6,13 @@
     <div class="col-md-6">
       <div class="card shadow">
         <div class="card-body">
-          <h2 class="text-center mb-4">Editar Modelo</h2>
+          <h2 class="text-center mb-4">Editar Marca</h2>
           <form method="post">
             {% csrf_token %}
             {% bootstrap_form form %}
             <div class="text-center mt-4">
               <button type="submit" class="btn btn-primary">Salvar</button>
-              <a class="btn btn-secondary" href="{% url 'add_modelo' %}">Voltar</a>
+              <a class="btn btn-secondary" href="{% url 'add_marca' %}">Voltar</a>
             </div>
           </form>
         </div>

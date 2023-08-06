@@ -4,8 +4,10 @@ from django.shortcuts import redirect, render, get_object_or_404
 from automovel.models import Automovel
 from locacao.forms import FormAddLocacao
 from locacao.models import Locacao
+from locacaoVeiculos.utils import group_required
 
 
+@group_required(['Cliente'], "/accounts/login/") # [ 'grupo1', 'grupo2' ]
 def listar_reservas(request):
     if request.user.is_authenticated:
         # Recupera as reservas feitas pelo cliente logado
@@ -15,8 +17,8 @@ def listar_reservas(request):
         context = {
             'reservas': reservas
         }
-        return render(request, 'assets/static/locacao/minhas_reservas.html', context)
-
+        return render(request, 'assets/locacao/minhas_reservas.html', context)
+@group_required(['Cliente'], "/accounts/login/") # [ 'grupo1', 'grupo2' ]
 def fazer_reserva(request, carro_id):
     if request.user.is_authenticated:
         user_id = request.user.id
@@ -72,8 +74,9 @@ def fazer_reserva(request, carro_id):
     else:
         return HttpResponse('faça login')
 
-    return render(request, 'assets/static/locacao/fazer_reserva.html', context)
+    return render(request, 'assets/locacao/fazer_reserva.html', context)
 
+@group_required(['Cliente', 'Gerente', 'Vendedor'], "/accounts/login/") # [ 'grupo1', 'grupo2' ]
 def cancelar_reserva(request, reserva_id):
     if request.user.is_authenticated:
         reserva = Locacao.objects.get(id=reserva_id)

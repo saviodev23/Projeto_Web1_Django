@@ -29,12 +29,14 @@
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
           <li><a class="dropdown-item" href="">{{ user.username }}</a></li>
           <li><hr class="dropdown-divider" /></li>
+{#	      {% if user.groups.filter(name='Vendedor').exists %}#}
           <li><a class="dropdown-item" href="{% url 'add_carro' %}">Adicionar Automóvel</a></li>
           <li><a class="dropdown-item" href="{% url 'add_marca' %}">Adicionar Marca</a></li>
           <li><a class="dropdown-item" href="{% url 'add_modelo' %}">Adicionar Modelo</a></li>
-{#	      <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>#}
+{#		  {% endif %}#}
+	      <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
 	{% else %}
-	      <li><a class="dropdown-item" href="{% url 'logi' %}">Login</a></li>
+	      <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
 
         </ul>
       </li>

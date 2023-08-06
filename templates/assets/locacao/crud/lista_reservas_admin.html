@@ -1,4 +1,4 @@
-{% extends 'assets/static/base.html' %}
+{% extends 'assets/base.html' %}
 
 {% block content %}
 <div class="container py-5">
@@ -23,7 +23,7 @@
       {% for reserva in reservas %}
         <li class="list-group-item">
           <a href="{% url 'editar_reserva' reserva.id %}" id="edit">
-            {{ reserva.cliente.nome }} - Carro: {{ reserva.automovel.modelo.marca.descricao }} - {{ reserva.automovel.modelo.descricao }} / {{ reserva.automovel.ano_fabricacao }} - Chassi: {{ reserva.automovel.chassi }}
+            {{ reserva.cliente.first_name }} {{ reserva.cliente.last_name }} - Carro: {{ reserva.automovel.modelo.marca.descricao }} - {{ reserva.automovel.modelo.descricao }} / {{ reserva.automovel.ano_fabricacao }} - Chassi: {{ reserva.automovel.chassi }}
           </a>
         </li>
       {% endfor %}

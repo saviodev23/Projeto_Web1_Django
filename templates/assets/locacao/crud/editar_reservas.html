@@ -1,10 +1,10 @@
-{% extends 'assets/static/base.html' %}
+{% extends 'assets/base.html' %}
 {% load bootstrap5 %}
 {% block content %}
 <div class="container py-5">
 
   <h2><strong>Editar Reserva do:</strong> {{ reserva.automovel.modelo.marca.descricao }} - {{ reserva.automovel.modelo.descricao}} / {{ reserva.automovel.ano_fabricacao }}</h2>
-  <h4><strong>Cliente:</strong> {{ reserva.cliente.nome }}</h4>
+  <h4><strong>Cliente:</strong> {{ reserva.cliente.first_name }} {{ reserva.cliente.last_name }}</h4>
 	<h5><strong>Status Atual:</strong> {{ reserva.status }}</h5>
   <form class="mt-4" method="post">
     {% csrf_token %}

@@ -5,21 +5,25 @@ from locacao.forms import FormEditLocacao
 from locacao.models import Locacao
 from decimal import Decimal
 
+from locacaoVeiculos.utils import group_required
+
+@group_required(['Gerente', 'Vendedor'], "/accounts/login/") # [ 'grupo1', 'grupo2' ]
 def listar_reservas_admin(request):
     reservas = Locacao.objects.all().order_by('-data_locacao')
 
     search_query = request.GET.get('search')
     if search_query:
         reservas = reservas.filter(
-            Q(cliente__nome__icontains=search_query) |
+            Q(cliente__first_name=search_query) |
+            Q(cliente__last_name=search_query) |
             Q(automovel__chassi__icontains=search_query)
         )
 
     context = {
         'reservas': reservas
     }
-    return render(request, 'assets/static/locacao/crud/lista_reservas_admin.html', context)
-
+    return render(request, 'assets/locacao/crud/lista_reservas_admin.html', context)
+@group_required(['Gerente', 'Vendedor'], "/accounts/login/") # [ 'grupo1', 'grupo2' ]
 def editar_reserva(request, reserva_id):
     reserva = get_object_or_404(Locacao, id=reserva_id)
 
@@ -83,14 +87,14 @@ def editar_reserva(request, reserva_id):
         'form': form,
         'reserva': reserva,
     }
-    return render(request, 'assets/static/locacao/crud/editar_reservas.html', context)
-
+    return render(request, 'assets/locacao/crud/editar_reservas.html', context)
+@group_required(['Gerente'], "/accounts/login/") # [ 'grupo1', 'grupo2' ]
 def remover_reserva(request, reserva_id):
     reserva = get_object_or_404(Locacao, pk=reserva_id)
     context = {
         "reserva": reserva
     }
-    return render(request, "assets/static/locacao/crud/remover_reserva.html", context)
+    return render(request, "assets/locacao/crud/remover_reserva.html", context)
 
 def confirmar_remover_reserva(request, reserva_id):
     Locacao.objects.get(pk=reserva_id).delete()
