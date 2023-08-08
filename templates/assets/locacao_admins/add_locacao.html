@@ -5,23 +5,40 @@
 
 <form method="post">
 	{% csrf_token %}
-	{% bootstrap_form form %}
-{#	<div class="form-group">#}
-{#        <label for="{{ form.data_locacao.id_for_label }}">Data de Locação:</label>#}
-{#        <div class="input-group">#}
-{#          <input type="date" name="{{ form.data_locacao.name }}" id="{{ form.data_locacao.id_for_label }}" class="form-control">#}
-{#          <input type="time" name="{{ form.hora_locacao.name }}" id="{{ form.hora_locacao.id_for_label }}" class="form-control">#}
-{#        </div>#}
-{#    </div>#}
-{##}
-{#	<div class="form-group">#}
-{#        <label for="{{ form.data_devolucao.id_for_label }}">Data de Devolução:</label>#}
-{#        <div class="input-group">#}
-{#          <input type="date" name="{{ form.data_devolucao.name }}" id="{{ form.data_devolucao.id_for_label }}" class="form-control">#}
-{#          <input type="time" name="{{ form.hora_devolucao.name }}" id="{{ form.hora_devolucao.id_for_label }}" class="form-control">#}
-{#        </div>#}
-{#	</div>#}
-{##}
+{#	{% bootstrap_form form %}#}
+	<div class="form-group">
+        <label for="{{ form.data_locacao.id_for_label }}">Data de Locação:</label>
+        <div class="input-group">
+          <input type="date" name="{{ form.data_locacao.name }}" id="{{ form.data_locacao.id_for_label }}" class="form-control">
+          <input type="time" name="{{ form.hora_locacao.name }}" id="{{ form.hora_locacao.id_for_label }}" class="form-control">
+        </div>
+    </div>
+
+	<div class="form-group">
+        <label for="{{ form.data_devolucao.id_for_label }}">Data de Devolução:</label>
+        <div class="input-group">
+          <input type="date" name="{{ form.data_devolucao.name }}" id="{{ form.data_devolucao.id_for_label }}" class="form-control">
+          <input type="time" name="{{ form.hora_devolucao.name }}" id="{{ form.hora_devolucao.id_for_label }}" class="form-control">
+        </div>
+	</div>
+
+	<div class="form-group">
+	    <label for="{{ form.cliente.id_for_label }}">Cliente:</label>
+	    <select name="{{ form.cliente.name }}" id="{{ form.cliente.id_for_label }}" class="form-control">
+	      {% for cliente in clientes %}
+	        <option value="{{ cliente.id }}">{{ cliente.first_name }}</option>
+	      {% endfor %}
+	    </select>
+    </div>
+	<div class="form-group">
+	    <label for="{{ form.status.id_for_label }}">Status:</label>
+	    <select name="{{ form.status.name }}" id="{{ form.status.id_for_label }}" class="form-control">
+	        {% for value, label in form.status.field.choices %}
+	            <option value="{{ value }}">{{ label }}</option>
+	        {% endfor %}
+	    </select>
+	</div>
+
 	<div class="d-flex justify-content-center">
         <button type="submit" class="btn btn-primary mr-3">Realizar Reserva</button>
         <a href="{% url 'home' %}" class="btn btn-secondary">Cancelar</a>

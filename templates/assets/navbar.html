@@ -10,13 +10,13 @@
     <ul class="navbar-nav ml-auto">
       {% if user.is_authenticated %}
 	  <li class="nav-item">
-        <a class="nav-link" href="{% url 'listar_carros_admin' %}">Alocação de Carros</a>
+        <a class="nav-link" href="{% url 'listar_reservas' %}">Reservas</a>
+      </li>
+	  <li class="nav-item">
+        <a class="nav-link" href="{% url 'listar_carros_admin' %}">Fazer Reserva</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'listar_reservas' %}">Minhas Reservas</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'listar_reservas_admin' %}">Reservas Admin</a>
+        <a class="nav-link" href="{% url 'listar_reservas_admin' %}">Lista de Reservas</a>
       </li>
       {% endif %}
       <li class="nav-item active">

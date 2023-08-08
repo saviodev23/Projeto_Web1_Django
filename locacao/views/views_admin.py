@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.models import User
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 
@@ -115,12 +116,8 @@ def alugar_veiculo(request, carro_id):
                 data_devolucao = form.cleaned_data['data_devolucao']
                 hora_locacao = form.cleaned_data['hora_locacao']
                 hora_devolucao = form.cleaned_data['hora_devolucao']
-                cliente = form.cleaned_data['cliente'].id,
-
-                cliente_id = cliente
-                print(f'cliente',cliente_id)
-
-                status = form.cleaned_data['status'],
+                cliente = form.cleaned_data['cliente'].id
+                status = form.cleaned_data['status']
 
                 # aqui eu faço a contagem de dias atraves da data de locacao e devolucao
                 diferenca_dias = (data_devolucao - data_locacao)
@@ -131,9 +128,14 @@ def alugar_veiculo(request, carro_id):
                 # calculo da qtd de KM/dia
                 limite_km = (quantidade_dias * 100)
 
+                #para o carro ficar indisponivel quando o status ficar em Retirado
+                if status == 'Retirado':
+                    carro.disponivel = False
+                    carro.save()
+
                 reserva = Locacao.objects.create(
                     automovel=carro,
-                    cliente_id=cliente_id,
+                    cliente_id=cliente,
                     data_locacao=data_locacao,
                     data_devolucao=data_devolucao,
                     hora_locacao=hora_locacao,
@@ -146,12 +148,15 @@ def alugar_veiculo(request, carro_id):
                 )
                 reserva.save()
                 # deixando o automovel indisponivel para não possibilitar algum clienta fazer a reserva dele
-                return redirect('listar_reservas')
+                return redirect('listar_reservas_admin')
         else:
             form = FormAdminLocacao()
 
+        clientes = User.objects.all()
+
         context = {
-            'form': form
+            'form': form,
+            'clientes': clientes
         }
         return render(request, 'assets/locacao_admins/add_locacao.html', context)
 

@@ -28,11 +28,17 @@ class FormEditLocacao(forms.ModelForm):
         }
 
 class FormAdminLocacao(forms.ModelForm):
-    # data_locacao = forms.DateField(label='Data de Locação')
-    # data_devolucao = forms.DateField(label='Data de Devolução')
-    # hora_locacao = forms.TimeField(label='Hora de Locação')
-    # hora_devolucao = forms.TimeField(label='Hora de Devolução')
-    # cliente = forms.ModelChoiceField(queryset=User.objects.all())  # Usando ModelChoiceField
+    STATUS_LOCACAO = (
+        ('Pendente', 'Pendente'),
+        ('Retirado', 'Retirado'),
+        ('Cancelado', 'Cancelado'),
+        ('Devolvido','Devolvido'),
+    )
+    data_locacao = forms.DateField()
+    hora_locacao = forms.TimeField()
+    data_devolucao = forms.DateField()
+    hora_devolucao = forms.TimeField()
+    status = forms.ChoiceField(choices=STATUS_LOCACAO)
 
     class Meta:
         model = Locacao
