@@ -1,11 +1,10 @@
 from django.contrib import messages
 from django.http import HttpResponse
-from django.shortcuts import redirect, render, get_object_or_404
+from django.shortcuts import redirect, render
 from automovel.models import Automovel
 from locacao.forms import FormAddLocacao
 from locacao.models import Locacao
 from locacaoVeiculos.utils import group_required
-
 
 @group_required(['Cliente'], "/accounts/login/") # [ 'grupo1', 'grupo2' ]
 def listar_reservas(request):

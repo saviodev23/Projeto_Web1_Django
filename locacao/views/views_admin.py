@@ -2,19 +2,15 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
-
 from automovel.models import Automovel
 from locacao.forms import FormEditLocacao, FormAdminLocacao
 from locacao.models import Locacao
 from decimal import Decimal
-
 from locacaoVeiculos.utils import group_required
-
-
 
 @group_required(['Gerente', 'Vendedor'], "/accounts/login/") # [ 'grupo1', 'grupo2' ]
 def listar_reservas_admin(request):
-    reservas = Locacao.objects.all().order_by('-data_locacao')
+    reservas = Locacao.objects.all().order_by('cliente__first_name')
 
     search_query = request.GET.get('search')
     if search_query:
@@ -72,7 +68,7 @@ def editar_reserva(request, reserva_id):
             messages.success(request, f'Reserva do {reserva.automovel.modelo.marca.descricao} - {reserva.automovel.modelo.descricao} alterada com sucesso!')
 
             #isso é para atualizar a disponibilidade do automovel quando o cliente retirar ou devolve-lo
-            if reserva.status == 'Devolvido' or reserva.status == 'Cencelado':
+            if reserva.status == 'Devolvido' or reserva.status == 'Cancelado':
                 reserva.automovel.disponivel = True
                 reserva.devolvido = True
                 reserva.automovel.save()
@@ -159,34 +155,3 @@ def alugar_veiculo(request, carro_id):
             'clientes': clientes
         }
         return render(request, 'assets/locacao_admins/add_locacao.html', context)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -5,13 +5,12 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 #chamada do arquivo .env e tranformando em string o conteudo
-SECRET_KEY = str(os.getenv('SECRET_KEY'))
+SECRET_KEY = 'django-insecure--%+05xzvloxk$b^uw32+5fr6h#&65^+uwx&9-dk2lqd=f-j8c7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,8 +30,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'automovel.apps.AutomovelConfig',
     'locacao.apps.LocacaoConfig',
-    'crispy_forms',
-    'notifications',
     'bootstrap5',
 ]
 
@@ -77,19 +74,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-# DATABASES = {
-#
-#  'default': {
-#
-#     'ENGINE': 'django.db.backends.mysql',
-#     'NAME': 'locacao',
-#     'USER': str(os.getenv('USER1')),
-#     'PASSWORD': str(os.getenv('PASSWORD')),
-#     'HOST': str(os.getenv('HOST')),
-#     'PORT': '3306',
-# }}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

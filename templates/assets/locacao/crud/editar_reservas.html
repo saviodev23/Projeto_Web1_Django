@@ -3,23 +3,30 @@
 {% block content %}
 <div class="container py-5">
 
-  <h2><strong>Editar Reserva do:</strong> {{ reserva.automovel.modelo.marca.descricao }} - {{ reserva.automovel.modelo.descricao}} / {{ reserva.automovel.ano_fabricacao }}</h2>
-  <h4><strong>Cliente:</strong> {{ reserva.cliente.first_name }} {{ reserva.cliente.last_name }}</h4>
-	<h5><strong>Status Atual:</strong> {{ reserva.status }}</h5>
-  <form class="mt-4" method="post">
-    {% csrf_token %}
-	{% bootstrap_form form form_class='small-form' %}
-    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
-    <a href="{% url 'listar_reservas_admin' %}" class="btn btn-secondary">Cancelar</a>
-  </form>
-
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Editar Reserva</h2>
+          <h4 class="card-subtitle mb-4"><strong>Veículo:</strong> {{ reserva.automovel.modelo.marca.descricao }} - {{ reserva.automovel.modelo.descricao }} / {{ reserva.automovel.ano_fabricacao }}</h4>
+          <h5 class="card-subtitle mb-4"><strong>Cliente:</strong> {{ reserva.cliente.first_name }} {{ reserva.cliente.last_name }}</h5>
+          <h6 class="card-subtitle mb-4"><strong>Status Atual:</strong> {{ reserva.status }}</h6>
+          <form method="post">
+            {% csrf_token %}
+            {% bootstrap_form form form_class='small-form' %}
+            <div class="d-grid gap-2 mt-4">
+              <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+              <a href="{% url 'listar_reservas_admin' %}" class="btn btn-secondary">Cancelar</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-	<style>
+<style>
 	body{
 		background: #cddad7;
 	}
-	</style>
+</style>
 {% endblock %}
-
-
-{#	<a href="/remover/reserva/{{ reserva.id }}" class="btn btn-outline-danger">Deletar Reserva</a>#}

@@ -1,5 +1,3 @@
-{#{% load custom_filters %}#}
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="{% url 'home' %}">RentCars</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -34,11 +32,9 @@
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
           <li><a class="dropdown-item" href="">{{ user.username }}</a></li>
           <li><hr class="dropdown-divider" /></li>
-{#	      {% if user.is_authenticated and user|has_group:'Vendedor' %}#}
           <li><a class="dropdown-item" href="{% url 'add_carro' %}">Adicionar Automóvel</a></li>
           <li><a class="dropdown-item" href="{% url 'add_marca' %}">Adicionar Marca</a></li>
           <li><a class="dropdown-item" href="{% url 'add_modelo' %}">Adicionar Modelo</a></li>
-{#		  {% endif %}#}
 	      <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
 	{% else %}
 	      <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
@@ -64,10 +60,6 @@
   .navbar-nav .nav-link {
     font-size: 16px;
     padding: 10px 15px;
-  }
-
-  .navbar-nav .nav-item.active .nav-link {
-    border-bottom: 3px solid #fff;
   }
 
   .navbar-toggler {
@@ -109,10 +101,6 @@
     left: auto;
   }
 
-  .navbar-nav .dropdown-item.text-danger:hover {
-    color: #dc3545;
-    background-color: transparent;
-  }
 
   .navbar-nav.ms-auto {
     align-items: center;

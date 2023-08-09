@@ -122,10 +122,10 @@
 <!-- Seção de carros alugados no momento -->
 <section class="bg-light py-5">
   <div class="container text-center">
-    <h2 class="cars">Carros Alugados no Momento</h2>
     <div class="row mt-4">
       {% for carro in carros %}
         {% if not carro.disponivel %}
+	        <h2 class="cars">Carros Alugados no Momento</h2>
           <div class="col-md-4">
             <div class="card mb-4 box-shadow">
               {% if carro.imagem %}
@@ -151,7 +151,7 @@
 
 <style>
   body {
-    background: #cddad7;
+    {#background: #cddad7;#}
   }
 
   .box-shadow {
@@ -166,7 +166,7 @@
 
     {#esse é o problematico#}
   .container {
-    background: white;
+    {#background: white;#}
   }
 
   .card .card-img-top {

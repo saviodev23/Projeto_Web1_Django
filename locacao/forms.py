@@ -1,8 +1,5 @@
 from django import forms
-from django.contrib.auth.models import User
-
 from locacao.models import Locacao
-
 
 class FormAddLocacao(forms.Form):
     data_locacao = forms.DateField(label='Data de Locação')
@@ -11,10 +8,10 @@ class FormAddLocacao(forms.Form):
     hora_devolucao = forms.TimeField(label='Hora de Devolução')
 
 
-
 class FormEditLocacao(forms.ModelForm):
     class Meta:
         model = Locacao
+
         fields = ['status', 'data_locacao', 'hora_locacao', 'data_devolucao', 'hora_devolucao', 'automovel', 'valor_locacao', 'quilometragem']
         widgets = {
             'status': forms.Select(attrs={'class': 'form-control'}),

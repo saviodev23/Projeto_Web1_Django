@@ -1,3 +1,5 @@
+import datetime
+import time
 from django.db import models
 from django.contrib.auth.models import User
 from automovel.models import Automovel
@@ -9,10 +11,10 @@ class Locacao(models.Model):
         ('Cancelado', 'Cancelado'),
         ('Devolvido','Devolvido'),
     )
-    data_locacao = models.DateField(blank=True, null=True, verbose_name='Data de Locação')
-    data_devolucao = models.DateField(blank=True, null=True, verbose_name='Data de Devolução')
-    hora_locacao = models.TimeField(verbose_name='Hora de Locação')
-    hora_devolucao = models.TimeField(verbose_name='Hora de Devolução')
+    data_locacao = models.DateField(blank=False, null=False, verbose_name='Data de Locação', default=datetime.date)
+    data_devolucao = models.DateField(blank=False, null=False, verbose_name='Data de Devolução', default=datetime.date)
+    hora_locacao = models.TimeField(verbose_name='Hora de Locação', null=False, blank=False, default=time.time())
+    hora_devolucao = models.TimeField(verbose_name='Hora de Devolução', null=False, blank=False, default=time.time())
     quilometragem = models.IntegerField(default=0)
     valor_locacao = models.DecimalField(max_digits=8, decimal_places=2, blank=True, null=True, verbose_name='Preço de Locação')
     devolvido = models.BooleanField(blank=True, null=True)
