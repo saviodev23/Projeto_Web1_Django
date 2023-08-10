@@ -4,10 +4,13 @@
 
 Este é um sistema de locação de carros desenvolvido utilizando o framework Django. O sistema permite que clientes cadastrem-se e façam reservas de carros disponíveis na locadora. Além disso, o sistema conta com uma interface administrativa que permite que funcionários da locadora gerenciem as reservas, carros e clientes.
 
+
 ### Diagrama de Classe do Professor:
-![DiagramaClasse.png](..%2F..%2FPictures%2FScreenshots%2FDiagramaClasse.png)
-### Diagrama de entidade e Relacionamento Gerado do Projeto:
-![DER_locacao.png](..%2F..%2FAppData%2FLocal%2FTemp%2FDER_locacao.png)
+![DiagramaClasse](https://github.com/saviodev23/Projeto_Web1_Django/assets/132952225/d8bd07b4-a0bc-4713-a4e5-cd1eaf640056)
+
+### Diagrama de Entidade e Relacionamento Gerado do Projeto:
+![DER_locacao](https://github.com/saviodev23/Projeto_Web1_Django/assets/132952225/c4f46668-60fd-4b7a-967d-b599619f3d07)
+
 
 
 ## Funcionalidades Principais
