@@ -8,7 +8,7 @@ Este é um sistema de locação de carros desenvolvido utilizando o framework Dj
 ### Diagrama de Classe do Professor:
 ![DiagramaClasse](https://github.com/saviodev23/Projeto_Web1_Django/assets/132952225/d8bd07b4-a0bc-4713-a4e5-cd1eaf640056)
 
-### Diagrama de entidade e Relacionamento Gerado do Projeto:
+### Diagrama de Entidade e Relacionamento Gerado do Projeto:
 ![DER_locacao](https://github.com/saviodev23/Projeto_Web1_Django/assets/132952225/c4f46668-60fd-4b7a-967d-b599619f3d07)
 
 
