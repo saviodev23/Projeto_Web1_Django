@@ -46,6 +46,3 @@ class Automovel(models.Model):
 
     def __str__(self):
         return self.modelo.marca.descricao
-
-
-
